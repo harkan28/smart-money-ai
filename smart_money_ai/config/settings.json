@@ -1,0 +1,17 @@
+{
+  "ml_model_path": "models/expense_category_model.joblib",
+  "feature_extractor_path": "models/feature_extractor.joblib",
+  "data_storage_path": "data/",
+  "log_level": "INFO",
+  "sms_parsing_enabled": true,
+  "ml_categorization_enabled": true,
+  "investment_engine_enabled": true,
+  "behavioral_analysis_enabled": true,
+  "predictive_analytics_enabled": true,
+  "api_rate_limit": 1000,
+  "max_transactions_per_user": 10000,
+  "backup_enabled": true,
+  "backup_frequency_hours": 24,
+  "encryption_enabled": false,
+  "demo_mode": true
+}

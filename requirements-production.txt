@@ -1,0 +1,73 @@
+# Smart Money AI - Production Requirements
+# ======================================
+# Core dependencies for Smart Money AI system
+
+# Core Python packages
+numpy>=1.21.0
+pandas>=1.5.0
+scikit-learn>=1.1.0
+joblib>=1.1.0
+
+# Machine Learning & NLP
+transformers>=4.20.0
+torch>=1.12.0
+sentence-transformers>=2.2.0
+
+# Data Processing
+regex>=2022.7.9
+python-dateutil>=2.8.2
+pytz>=2022.1
+
+# Database & Storage
+sqlite3-utils>=3.28.0
+sqlalchemy>=1.4.0
+
+# Web & API (for future development)
+fastapi>=0.85.0
+uvicorn>=0.18.0
+pydantic>=1.10.0
+
+# Financial Data & APIs
+yfinance>=0.1.87
+requests>=2.28.0
+
+# Utilities
+python-dotenv>=0.20.0
+click>=8.1.0
+tqdm>=4.64.0
+
+# Testing
+pytest>=7.1.0
+pytest-cov>=3.0.0
+unittest-xml-reporting>=3.2.0
+
+# Development Tools
+black>=22.6.0
+flake8>=5.0.0
+mypy>=0.971
+isort>=5.10.0
+
+# Visualization (optional)
+matplotlib>=3.5.0
+seaborn>=0.11.0
+plotly>=5.10.0
+
+# Documentation
+sphinx>=5.1.0
+sphinx-rtd-theme>=1.0.0
+
+# Production deployment
+gunicorn>=20.1.0
+python-multipart>=0.0.5
+
+# Security
+cryptography>=37.0.0
+passlib>=1.7.4
+
+# Logging & Monitoring
+structlog>=22.1.0
+sentry-sdk>=1.9.0
+
+# Configuration
+pyyaml>=6.0
+toml>=0.10.2

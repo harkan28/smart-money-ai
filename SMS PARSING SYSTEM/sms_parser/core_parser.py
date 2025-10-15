@@ -279,7 +279,7 @@ class MerchantCleaner:
         return cleaned or "Unknown Merchant"
 
 
-class SMSParser:
+class SMSTransactionParser:
     """Main SMS parsing engine"""
     
     def __init__(self):
@@ -462,7 +462,7 @@ class SMSParser:
 
 def main():
     """Demo SMS parsing"""
-    parser = SMSParser()
+    parser = SMSTransactionParser()
     
     # Sample SMS messages
     sample_sms = [
@@ -493,6 +493,10 @@ def main():
                 print(f"   💰 Balance: ₹{transaction.balance}")
         else:
             print("❌ Parsing Failed")
+
+
+# Keep backwards compatibility
+SMSParser = SMSTransactionParser
 
 
 if __name__ == "__main__":

@@ -1,0 +1,523 @@
+{
+  "dataset_info": {
+    "name": "shriyashjagtap/indian-personal-finance-and-spending-habits",
+    "download_path": "/Users/harshitrawal/.cache/kagglehub/datasets/shriyashjagtap/indian-personal-finance-and-spending-habits/versions/1",
+    "analysis_date": "2025-10-15T15:44:25.536487",
+    "total_files": 1,
+    "file_list": [
+      {
+        "filename": "data.csv",
+        "size_mb": 8.23,
+        "extension": ".csv"
+      }
+    ]
+  },
+  "analysis_results": {
+    "data.csv": {
+      "rows": 20000,
+      "columns": 27,
+      "column_names": [
+        "Income",
+        "Age",
+        "Dependents",
+        "Occupation",
+        "City_Tier",
+        "Rent",
+        "Loan_Repayment",
+        "Insurance",
+        "Groceries",
+        "Transport",
+        "Eating_Out",
+        "Entertainment",
+        "Utilities",
+        "Healthcare",
+        "Education",
+        "Miscellaneous",
+        "Desired_Savings_Percentage",
+        "Desired_Savings",
+        "Disposable_Income",
+        "Potential_Savings_Groceries",
+        "Potential_Savings_Transport",
+        "Potential_Savings_Eating_Out",
+        "Potential_Savings_Entertainment",
+        "Potential_Savings_Utilities",
+        "Potential_Savings_Healthcare",
+        "Potential_Savings_Education",
+        "Potential_Savings_Miscellaneous"
+      ],
+      "data_types": {
+        "Income": "float64",
+        "Age": "int64",
+        "Dependents": "int64",
+        "Occupation": "object",
+        "City_Tier": "object",
+        "Rent": "float64",
+        "Loan_Repayment": "float64",
+        "Insurance": "float64",
+        "Groceries": "float64",
+        "Transport": "float64",
+        "Eating_Out": "float64",
+        "Entertainment": "float64",
+        "Utilities": "float64",
+        "Healthcare": "float64",
+        "Education": "float64",
+        "Miscellaneous": "float64",
+        "Desired_Savings_Percentage": "float64",
+        "Desired_Savings": "float64",
+        "Disposable_Income": "float64",
+        "Potential_Savings_Groceries": "float64",
+        "Potential_Savings_Transport": "float64",
+        "Potential_Savings_Eating_Out": "float64",
+        "Potential_Savings_Entertainment": "float64",
+        "Potential_Savings_Utilities": "float64",
+        "Potential_Savings_Healthcare": "float64",
+        "Potential_Savings_Education": "float64",
+        "Potential_Savings_Miscellaneous": "float64"
+      },
+      "sample_data": [
+        {
+          "Income": 44637.24963568593,
+          "Age": 49,
+          "Dependents": 0,
+          "Occupation": "Self_Employed",
+          "City_Tier": "Tier_1",
+          "Rent": 13391.174890705775,
+          "Loan_Repayment": 0.0,
+          "Insurance": 2206.490129258186,
+          "Groceries": 6658.768340572072,
+          "Transport": 2636.9706962044347,
+          "Eating_Out": 1651.8017262162875,
+          "Entertainment": 1536.1842554984205,
+          "Utilities": 2911.792230881923,
+          "Healthcare": 1546.9145393077706,
+          "Education": 0.0,
+          "Miscellaneous": 831.5251201893564,
+          "Desired_Savings_Percentage": 13.890948127514209,
+          "Desired_Savings": 6200.537192442157,
+          "Disposable_Income": 11265.6277068517,
+          "Potential_Savings_Groceries": 1685.696221820344,
+          "Potential_Savings_Transport": 328.895281163744,
+          "Potential_Savings_Eating_Out": 465.7691723793779,
+          "Potential_Savings_Entertainment": 195.1513197044244,
+          "Potential_Savings_Utilities": 678.292858894135,
+          "Potential_Savings_Healthcare": 67.68247059153573,
+          "Potential_Savings_Education": 0.0,
+          "Potential_Savings_Miscellaneous": 85.7355167261814
+        },
+        {
+          "Income": 26858.596591729543,
+          "Age": 34,
+          "Dependents": 2,
+          "Occupation": "Retired",
+          "City_Tier": "Tier_2",
+          "Rent": 5371.719318345909,
+          "Loan_Repayment": 0.0,
+          "Insurance": 869.522616973343,
+          "Groceries": 2818.444460208314,
+          "Transport": 1543.018777757239,
+          "Eating_Out": 649.378102691658,
+          "Entertainment": 1050.241737526573,
+          "Utilities": 1626.1433462348405,
+          "Healthcare": 1137.3513250935068,
+          "Education": 1551.723167073342,
+          "Miscellaneous": 564.2350071403704,
+          "Desired_Savings_Percentage": 7.160375737936883,
+          "Desired_Savings": 1923.1764339045449,
+          "Disposable_Income": 9676.818732684447,
+          "Potential_Savings_Groceries": 540.3065609743139,
+          "Potential_Savings_Transport": 119.3471392729626,
+          "Potential_Savings_Eating_Out": 141.8660892207998,
+          "Potential_Savings_Entertainment": 234.13116770757009,
+          "Potential_Savings_Utilities": 286.6684081170868,
+          "Potential_Savings_Healthcare": 6.603211579465993,
+          "Potential_Savings_Education": 56.30687375031202,
+          "Potential_Savings_Miscellaneous": 97.38860573311446
+        },
+        {
+          "Income": 50367.60508357677,
+          "Age": 35,
+          "Dependents": 1,
+          "Occupation": "Student",
+          "City_Tier": "Tier_3",
+          "Rent": 7555.140762536515,
+          "Loan_Repayment": 4612.103386494076,
+          "Insurance": 2201.80004994864,
+          "Groceries": 6313.222080930132,
+          "Transport": 3221.396403447025,
+          "Eating_Out": 1513.814375754018,
+          "Entertainment": 1723.3069258963044,
+          "Utilities": 3368.457107630641,
+          "Healthcare": 2178.5158473219,
+          "Education": 3160.0262993703845,
+          "Miscellaneous": 628.3712199568122,
+          "Desired_Savings_Percentage": 13.9978075391687,
+          "Desired_Savings": 7050.360421687626,
+          "Disposable_Income": 13891.450624290315,
+          "Potential_Savings_Groceries": 1466.0739836139662,
+          "Potential_Savings_Transport": 473.54975177871074,
+          "Potential_Savings_Eating_Out": 410.85712937681257,
+          "Potential_Savings_Entertainment": 459.9652564827151,
+          "Potential_Savings_Utilities": 488.3834232749426,
+          "Potential_Savings_Healthcare": 7.290892451943464,
+          "Potential_Savings_Education": 106.65359736162743,
+          "Potential_Savings_Miscellaneous": 138.54242192398323
+        },
+        {
+          "Income": 101455.6002469913,
+          "Age": 21,
+          "Dependents": 0,
+          "Occupation": "Self_Employed",
+          "City_Tier": "Tier_3",
+          "Rent": 15218.340037048692,
+          "Loan_Repayment": 6809.441426747919,
+          "Insurance": 4889.418087072337,
+          "Groceries": 14690.149362877528,
+          "Transport": 7106.13000500776,
+          "Eating_Out": 5040.249157842395,
+          "Entertainment": 2858.1942402624245,
+          "Utilities": 6128.5503866316585,
+          "Healthcare": 4571.118216513439,
+          "Education": 0.0,
+          "Miscellaneous": 2526.0557123260573,
+          "Desired_Savings_Percentage": 16.45543971526684,
+          "Desired_Savings": 16694.965136405768,
+          "Disposable_Income": 31617.95361466108,
+          "Potential_Savings_Groceries": 1875.9327700858253,
+          "Potential_Savings_Transport": 762.0207885828804,
+          "Potential_Savings_Eating_Out": 1241.0174478115837,
+          "Potential_Savings_Entertainment": 320.1905938249095,
+          "Potential_Savings_Utilities": 1389.8150326091811,
+          "Potential_Savings_Healthcare": 193.5027543462559,
+          "Potential_Savings_Education": 0.0,
+          "Potential_Savings_Miscellaneous": 296.0411827445534
+        },
+        {
+          "Income": 24875.28354773196,
+          "Age": 52,
+          "Dependents": 4,
+          "Occupation": "Professional",
+          "City_Tier": "Tier_2",
+          "Rent": 4975.056709546392,
+          "Loan_Repayment": 3112.6093984226027,
+          "Insurance": 635.90717006727,
+          "Groceries": 3034.3296645448127,
+          "Transport": 1276.1551627316926,
+          "Eating_Out": 692.8272250153346,
+          "Entertainment": 660.1868515437461,
+          "Utilities": 1092.6890239734755,
+          "Healthcare": 1169.0958159721715,
+          "Education": 1445.2156935520268,
+          "Miscellaneous": 515.5103002593428,
+          "Desired_Savings_Percentage": 7.533982196578117,
+          "Desired_Savings": 1874.0994338344517,
+          "Disposable_Income": 6265.700532103096,
+          "Potential_Savings_Groceries": 788.9531239694041,
+          "Potential_Savings_Transport": 68.16076563734855,
+          "Potential_Savings_Eating_Out": 61.71250516811943,
+          "Potential_Savings_Entertainment": 187.17375009486523,
+          "Potential_Savings_Utilities": 194.11712989682545,
+          "Potential_Savings_Healthcare": 47.29459127462688,
+          "Potential_Savings_Education": 67.38812048153109,
+          "Potential_Savings_Miscellaneous": 96.5570761532972
+        }
+      ],
+      "missing_values": {
+        "Income": 0,
+        "Age": 0,
+        "Dependents": 0,
+        "Occupation": 0,
+        "City_Tier": 0,
+        "Rent": 0,
+        "Loan_Repayment": 0,
+        "Insurance": 0,
+        "Groceries": 0,
+        "Transport": 0,
+        "Eating_Out": 0,
+        "Entertainment": 0,
+        "Utilities": 0,
+        "Healthcare": 0,
+        "Education": 0,
+        "Miscellaneous": 0,
+        "Desired_Savings_Percentage": 0,
+        "Desired_Savings": 0,
+        "Disposable_Income": 0,
+        "Potential_Savings_Groceries": 0,
+        "Potential_Savings_Transport": 0,
+        "Potential_Savings_Eating_Out": 0,
+        "Potential_Savings_Entertainment": 0,
+        "Potential_Savings_Utilities": 0,
+        "Potential_Savings_Healthcare": 0,
+        "Potential_Savings_Education": 0,
+        "Potential_Savings_Miscellaneous": 0
+      },
+      "file_size_mb": 8.23,
+      "basic_stats": {
+        "Income": {
+          "mean": 41585.49610420809,
+          "std": 40014.540537531015,
+          "min": 1301.1873325549093,
+          "max": 1079728.3735172302,
+          "count": 20000
+        },
+        "Age": {
+          "mean": 41.03145,
+          "std": 13.578725271044394,
+          "min": 18.0,
+          "max": 64.0,
+          "count": 20000
+        },
+        "Dependents": {
+          "mean": 1.99595,
+          "std": 1.4176156316871706,
+          "min": 0.0,
+          "max": 4.0,
+          "count": 20000
+        },
+        "Rent": {
+          "mean": 9115.494628850347,
+          "std": 9254.228187778272,
+          "min": 235.36569242990643,
+          "max": 215945.67470344604,
+          "count": 20000
+        },
+        "Loan_Repayment": {
+          "mean": 2049.8002915568945,
+          "std": 4281.789940518064,
+          "min": 0.0,
+          "max": 123080.68200873844,
+          "count": 20000
+        },
+        "Insurance": {
+          "mean": 1455.0287605145606,
+          "std": 1492.9384352898796,
+          "min": 30.002011733952813,
+          "max": 38734.93293491964,
+          "count": 20000
+        },
+        "Groceries": {
+          "mean": 5205.667492917091,
+          "std": 5035.953689058049,
+          "min": 154.0782404303743,
+          "max": 119816.89812392244,
+          "count": 20000
+        },
+        "Transport": {
+          "mean": 2704.4666850586427,
+          "std": 2666.345647737341,
+          "min": 81.22858353947137,
+          "max": 81861.50345724131,
+          "count": 20000
+        },
+        "Eating_Out": {
+          "mean": 1461.856981509274,
+          "std": 1481.660811475693,
+          "min": 39.43752347152829,
+          "max": 34406.10016620858,
+          "count": 20000
+        },
+        "Entertainment": {
+          "mean": 1448.8536576174345,
+          "std": 1489.0192695697967,
+          "min": 45.42146875449333,
+          "max": 38667.3683079643,
+          "count": 20000
+        },
+        "Utilities": {
+          "mean": 2504.9769529242394,
+          "std": 2522.981880350343,
+          "min": 75.42941409603662,
+          "max": 53725.442254580616,
+          "count": 20000
+        },
+        "Healthcare": {
+          "mean": 1663.0817941353534,
+          "std": 1628.163023589639,
+          "min": 53.50076074051687,
+          "max": 36001.52736536964,
+          "count": 20000
+        },
+        "Education": {
+          "mean": 2498.348421532444,
+          "std": 3098.438165713815,
+          "min": 0.0,
+          "max": 81665.09185716957,
+          "count": 20000
+        },
+        "Miscellaneous": {
+          "mean": 830.5531808624384,
+          "std": 845.0199219907099,
+          "min": 20.503223235471587,
+          "max": 15856.359400778718,
+          "count": 20000
+        },
+        "Desired_Savings_Percentage": {
+          "mean": 9.804183070490234,
+          "std": 3.9038582529415247,
+          "min": 5.000042464667287,
+          "max": 24.9987757869196,
+          "count": 20000
+        },
+        "Desired_Savings": {
+          "mean": 4982.878415536119,
+          "std": 7733.468188192052,
+          "min": 0.0,
+          "max": 245504.48520842093,
+          "count": 20000
+        },
+        "Disposable_Income": {
+          "mean": 10647.367256729376,
+          "std": 11740.637288607546,
+          "min": -5400.788673360352,
+          "max": 377060.2184816983,
+          "count": 20000
+        },
+        "Potential_Savings_Groceries": {
+          "mean": 912.197183462572,
+          "std": 1038.884967728934,
+          "min": 16.575500707363133,
+          "max": 34894.6444036693,
+          "count": 20000
+        },
+        "Potential_Savings_Transport": {
+          "mean": 473.0426498420855,
+          "std": 537.2228529591955,
+          "min": 8.268075595001328,
+          "max": 12273.258241946149,
+          "count": 20000
+        },
+        "Potential_Savings_Eating_Out": {
+          "mean": 254.96327952243547,
+          "std": 296.04794349276426,
+          "min": 3.797925617521133,
+          "max": 5573.0364333663065,
+          "count": 20000
+        },
+        "Potential_Savings_Entertainment": {
+          "mean": 254.03105768815783,
+          "std": 299.9735902283356,
+          "min": 3.1216097702631345,
+          "max": 6222.200912602951,
+          "count": 20000
+        },
+        "Potential_Savings_Utilities": {
+          "mean": 436.33280815755035,
+          "std": 503.20065771901443,
+          "min": 6.2002967051851865,
+          "max": 8081.799518004396,
+          "count": 20000
+        },
+        "Potential_Savings_Healthcare": {
+          "mean": 41.52496404372122,
+          "std": 53.15245765250334,
+          "min": 0.0012380985489124,
+          "max": 1394.531048952232,
+          "count": 20000
+        },
+        "Potential_Savings_Education": {
+          "mean": 62.41708345252613,
+          "std": 98.84265635596236,
+          "min": 0.0,
+          "max": 3647.244242843092,
+          "count": 20000
+        },
+        "Potential_Savings_Miscellaneous": {
+          "mean": 144.90498721823934,
+          "std": 169.16095135614682,
+          "min": 2.091972523329176,
+          "max": 4637.9511374225385,
+          "count": 20000
+        }
+      },
+      "relevant_columns": [
+        [
+          "Income",
+          "income"
+        ],
+        [
+          "Loan_Repayment",
+          "payment"
+        ],
+        [
+          "Desired_Savings_Percentage",
+          "savings"
+        ],
+        [
+          "Desired_Savings",
+          "savings"
+        ],
+        [
+          "Disposable_Income",
+          "income"
+        ],
+        [
+          "Potential_Savings_Groceries",
+          "savings"
+        ],
+        [
+          "Potential_Savings_Transport",
+          "savings"
+        ],
+        [
+          "Potential_Savings_Eating_Out",
+          "savings"
+        ],
+        [
+          "Potential_Savings_Entertainment",
+          "savings"
+        ],
+        [
+          "Potential_Savings_Utilities",
+          "savings"
+        ],
+        [
+          "Potential_Savings_Healthcare",
+          "savings"
+        ],
+        [
+          "Potential_Savings_Education",
+          "savings"
+        ],
+        [
+          "Potential_Savings_Miscellaneous",
+          "savings"
+        ]
+      ]
+    }
+  },
+  "relevance_assessment": {
+    "overall_score": 60.0,
+    "file_scores": {
+      "data.csv": {
+        "score": 60,
+        "strengths": [
+          "income data present",
+          "transaction_data data present",
+          "budgeting data present",
+          "Substantial dataset size",
+          "Multiple data dimensions"
+        ]
+      }
+    },
+    "strengths": [],
+    "weaknesses": [],
+    "use_cases": [
+      "Supplementary training data",
+      "Model validation and testing",
+      "Spending pattern validation",
+      "Feature engineering insights"
+    ],
+    "integration_potential": [
+      "Selective integration of high-quality features",
+      "Cross-validation of existing models",
+      "Enhancement of specific components"
+    ],
+    "detailed_report": "\n\ud83d\udcca DATASET RELEVANCE ANALYSIS\n--------------------------------------------------\nOverall Score: 60.0/100 (Medium Relevance)\n\n\ud83d\udcc1 File Analysis:\n   data.csv: 60/100 - income data present, transaction_data data present, budgeting data present, Substantial dataset size, Multiple data dimensions\n\n\ud83d\udca1 Potential Use Cases:\n   \u2022 Supplementary training data\n   \u2022 Model validation and testing\n   \u2022 Spending pattern validation\n   \u2022 Feature engineering insights\n\n\ud83d\udd27 Integration Opportunities:\n   \u2022 Selective integration of high-quality features\n   \u2022 Cross-validation of existing models\n   \u2022 Enhancement of specific components\n\n\ud83c\udfaf Recommendation: MODERATELY USEFUL\n"
+  },
+  "recommendations": [
+    "Selectively extract high-value features",
+    "Use for model validation and testing",
+    "Combine with existing synthetic data for training",
+    "Focus on specific components that show highest relevance",
+    "Continue monitoring for newer, more relevant datasets"
+  ]
+}

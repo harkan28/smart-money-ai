@@ -1,0 +1,179 @@
+{
+  "generated_date": "2025-10-15T11:44:12.775545",
+  "market_sentiment": {
+    "overall_market": {
+      "sentiment": "Moderately Bullish",
+      "confidence": 0.72,
+      "factors": [
+        "Strong Q3 earnings growth",
+        "Stable inflation trends",
+        "Positive GDP indicators",
+        "FII inflows increasing"
+      ]
+    },
+    "sector_analysis": {
+      "technology": {
+        "sentiment": "Bullish",
+        "score": 0.78
+      },
+      "banking": {
+        "sentiment": "Neutral",
+        "score": 0.52
+      },
+      "healthcare": {
+        "sentiment": "Bullish",
+        "score": 0.69
+      },
+      "energy": {
+        "sentiment": "Bearish",
+        "score": 0.34
+      },
+      "consumer_goods": {
+        "sentiment": "Moderately Bullish",
+        "score": 0.61
+      }
+    }
+  },
+  "user_profile": {
+    "risk_tolerance": "Moderate",
+    "investment_horizon": "Long-term (15+ years)",
+    "monthly_investible_surplus": 15000,
+    "current_age": 28,
+    "retirement_goal": 65,
+    "investment_experience": "Beginner to Intermediate",
+    "primary_goals": [
+      "Wealth creation",
+      "Retirement planning",
+      "Tax optimization",
+      "Emergency fund building"
+    ]
+  },
+  "portfolio_recommendations": {
+    "recommended_allocation": {
+      "equity_mutual_funds": {
+        "allocation": 40,
+        "instruments": [
+          "Large Cap Funds",
+          "Mid Cap Funds",
+          "ELSS (Tax Saving)"
+        ],
+        "expected_return": 12.5,
+        "risk_level": "Medium"
+      },
+      "index_funds": {
+        "allocation": 20,
+        "instruments": [
+          "Nifty 50 Index Fund",
+          "Sensex Index Fund"
+        ],
+        "expected_return": 11.0,
+        "risk_level": "Medium"
+      },
+      "debt_instruments": {
+        "allocation": 25,
+        "instruments": [
+          "Corporate Bonds",
+          "Government Securities",
+          "Liquid Funds"
+        ],
+        "expected_return": 7.5,
+        "risk_level": "Low"
+      },
+      "gold_commodities": {
+        "allocation": 10,
+        "instruments": [
+          "Gold ETF",
+          "Digital Gold"
+        ],
+        "expected_return": 8.0,
+        "risk_level": "Medium"
+      },
+      "international_exposure": {
+        "allocation": 5,
+        "instruments": [
+          "US Index Funds",
+          "Global Equity Funds"
+        ],
+        "expected_return": 10.0,
+        "risk_level": "High"
+      }
+    }
+  },
+  "sip_recommendations": {
+    "total_monthly_sip": 15000,
+    "sip_breakdown": {
+      "equity_funds": 6000,
+      "index_funds": 3000,
+      "debt_funds": 3750,
+      "gold_etf": 1500,
+      "international_funds": 750
+    },
+    "projected_corpus": {
+      "5_years": 1250000,
+      "10_years": 3200000,
+      "15_years": 6800000,
+      "20_years": 12500000
+    },
+    "tax_benefits": {
+      "annual_80c_benefit": 46800,
+      "ltcg_tax_efficiency": "10% after \u20b91 lakh exemption"
+    }
+  },
+  "tactical_insights": {
+    "immediate_opportunities": [
+      {
+        "sector": "Technology",
+        "recommendation": "Increase allocation by 5%",
+        "reason": "Strong earnings outlook and digital transformation trends",
+        "time_horizon": "6-12 months"
+      },
+      {
+        "sector": "Healthcare",
+        "recommendation": "Maintain current allocation",
+        "reason": "Defensive sector with steady growth prospects",
+        "time_horizon": "12-24 months"
+      }
+    ],
+    "risk_alerts": [
+      {
+        "alert": "Energy Sector Volatility",
+        "impact": "Medium",
+        "action": "Reduce allocation if overweight",
+        "timeline": "Next 3 months"
+      }
+    ],
+    "rebalancing_triggers": [
+      "Quarterly portfolio review",
+      "Major market correction (>15%)",
+      "Significant life events",
+      "Goal timeline changes"
+    ]
+  },
+  "goal_planning": {
+    "retirement_planning": {
+      "target_corpus": 50000000,
+      "monthly_sip_required": 12000,
+      "current_progress": "On track with recommended SIP",
+      "milestone_years": {
+        "35": 2500000,
+        "45": 8500000,
+        "55": 22000000,
+        "65": 50000000
+      }
+    },
+    "emergency_fund": {
+      "target_amount": 600000,
+      "current_status": "Build gradually",
+      "recommended_instruments": [
+        "Liquid Funds",
+        "Savings Account"
+      ],
+      "timeline": "18 months"
+    },
+    "tax_optimization": {
+      "80c_utilization": "\u20b91.5 lakh through ELSS",
+      "nps_benefits": "Additional \u20b950K under 80CCD(1B)",
+      "estimated_annual_savings": 78000
+    }
+  }
+}

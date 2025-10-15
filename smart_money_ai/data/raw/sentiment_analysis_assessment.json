@@ -1,0 +1,216 @@
+{
+  "dataset_name": "equinxx/stock-tweets-for-sentiment-analysis-and-prediction",
+  "analysis_date": "2025-10-15",
+  "dataset_type": "sentiment_analysis",
+  "total_records": 87093,
+  "average_relevance": 47.5,
+  "file_analyses": {
+    "stock_yfinance_data.csv": {
+      "filename": "stock_yfinance_data.csv",
+      "file_size_mb": 0.6793708801269531,
+      "shape": [
+        6300,
+        8
+      ],
+      "columns": [
+        "Date",
+        "Open",
+        "High",
+        "Low",
+        "Close",
+        "Adj Close",
+        "Volume",
+        "Stock Name"
+      ],
+      "sample_data": [
+        {
+          "Date": "2021-09-30",
+          "Open": 260.3333435058594,
+          "High": 263.0433349609375,
+          "Low": 258.3333435058594,
+          "Close": 258.49334716796875,
+          "Adj Close": 258.49334716796875,
+          "Volume": 53868000,
+          "Stock Name": "TSLA"
+        },
+        {
+          "Date": "2021-10-01",
+          "Open": 259.4666748046875,
+          "High": 260.260009765625,
+          "Low": 254.52999877929688,
+          "Close": 258.4066772460937,
+          "Adj Close": 258.4066772460937,
+          "Volume": 51094200,
+          "Stock Name": "TSLA"
+        },
+        {
+          "Date": "2021-10-04",
+          "Open": 265.5,
+          "High": 268.989990234375,
+          "Low": 258.7066650390625,
+          "Close": 260.510009765625,
+          "Adj Close": 260.510009765625,
+          "Volume": 91449900,
+          "Stock Name": "TSLA"
+        }
+      ],
+      "data_types": {
+        "Date": "object",
+        "Open": "float64",
+        "High": "float64",
+        "Low": "float64",
+        "Close": "float64",
+        "Adj Close": "float64",
+        "Volume": "int64",
+        "Stock Name": "object"
+      },
+      "missing_values": {
+        "Date": 0,
+        "Open": 0,
+        "High": 0,
+        "Low": 0,
+        "Close": 0,
+        "Adj Close": 0,
+        "Volume": 0,
+        "Stock Name": 0
+      },
+      "unique_values": {
+        "Date": 252,
+        "Open": 5673,
+        "High": 5736,
+        "Low": 5767,
+        "Close": 5731,
+        "Adj Close": 6048,
+        "Volume": 6245,
+        "Stock Name": 25
+      },
+      "sampled": false,
+      "relevance_score": 22,
+      "relevant_columns": [
+        "Stock Name"
+      ],
+      "sentiment_indicators": [],
+      "stock_indicators": [
+        "Stock Name"
+      ],
+      "tweet_like_columns": [],
+      "potential_sentiment_scores": [],
+      "estimated_full_size": 6300
+    },
+    "stock_tweets.csv": {
+      "filename": "stock_tweets.csv",
+      "file_size_mb": 17.20171546936035,
+      "shape": [
+        80793,
+        4
+      ],
+      "columns": [
+        "Date",
+        "Tweet",
+        "Stock Name",
+        "Company Name"
+      ],
+      "sample_data": [
+        {
+          "Date": "2022-09-29 23:41:16+00:00",
+          "Tweet": "Mainstream media has done an amazing job at brainwashing people. Today at work, we were asked what companies we believe in &amp; I said @Tesla because they make the safest cars &amp; EVERYONE disagreed with me because they heard\u201cthey catch on fire &amp; the batteries cost 20k to replace\u201d",
+          "Stock Name": "TSLA",
+          "Company Name": "Tesla, Inc."
+        },
+        {
+          "Date": "2022-09-29 23:24:43+00:00",
+          "Tweet": "Tesla delivery estimates are at around 364k from the analysts. $tsla",
+          "Stock Name": "TSLA",
+          "Company Name": "Tesla, Inc."
+        },
+        {
+          "Date": "2022-09-29 23:18:08+00:00",
+          "Tweet": "3/ Even if I include 63.0M unvested RSUs as of 6/30, additional equity needed for the RSUs is 63.0M x $54.20 = $3.4B. If the deal closed tomorrow at $54.20, Elon would need $2.0B for existing shares plus $3.4B for RSUs, so $5.4B new equity. $twtr $tsla",
+          "Stock Name": "TSLA",
+          "Company Name": "Tesla, Inc."
+        }
+      ],
+      "data_types": {
+        "Date": "object",
+        "Tweet": "object",
+        "Stock Name": "object",
+        "Company Name": "object"
+      },
+      "missing_values": {
+        "Date": 0,
+        "Tweet": 0,
+        "Stock Name": 0,
+        "Company Name": 0
+      },
+      "unique_values": {
+        "Date": 64424,
+        "Tweet": 64479,
+        "Stock Name": 25,
+        "Company Name": 25
+      },
+      "sampled": false,
+      "relevance_score": 73,
+      "relevant_columns": [
+        "Tweet",
+        "Stock Name"
+      ],
+      "sentiment_indicators": [],
+      "stock_indicators": [
+        "Stock Name"
+      ],
+      "tweet_like_columns": [
+        "Date",
+        "Tweet"
+      ],
+      "potential_sentiment_scores": [],
+      "estimated_full_size": 80793
+    }
+  },
+  "integration_assessment": {
+    "level": "MEDIUM",
+    "recommendation": "Moderate integration potential. 87,093 records with 47.5/100 relevance. Could provide supplementary sentiment insights for investment analysis.",
+    "next_steps": [
+      "Focus on highest-quality sentiment data",
+      "Consider sentiment as supplementary investment signal",
+      "Analyze correlation between sentiment and investment outcomes"
+    ],
+    "sentiment_score": 2,
+    "stock_score": 2,
+    "data_type": "sentiment_analysis"
+  },
+  "smart_money_ai_context": {
+    "current_focus": "Personal finance management with demographic and behavioral intelligence",
+    "existing_datasets": {
+      "personal_finance": {
+        "records": 20000,
+        "relevance": 60,
+        "status": "integrated"
+      },
+      "investment_behavioral": {
+        "records": 100,
+        "relevance": 75,
+        "status": "integrated"
+      },
+      "investment_habits": {
+        "records": 423,
+        "relevance": 55,
+        "status": "selective_framework_use"
+      }
+    },
+    "sentiment_analysis_fit": {
+      "core_relevance": "Medium - adds market intelligence layer",
+      "enhancement_potential": "High - could improve investment recommendations",
+      "complexity_concern": "High - requires NLP and sentiment processing infrastructure"
+    }
+  },
+  "recommendation_summary": {
+    "should_integrate": false,
+    "integration_type": "not_recommended",
+    "focus_areas": [
+      "market sentiment",
+      "investment psychology",
+      "social trading signals"
+    ],
+    "expected_enhancement": "Enhanced investment recommendations with market sentiment intelligence"
+  }
+}

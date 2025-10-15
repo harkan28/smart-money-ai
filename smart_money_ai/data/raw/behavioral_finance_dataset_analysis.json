@@ -1,0 +1,24 @@
+{
+  "dataset_name": "rishavwalde/behavioral-finance-and-investment-decision",
+  "analysis_date": "2025-10-15T19:37:05.589688",
+  "records": 1500,
+  "columns": 5,
+  "behavioral_columns": [],
+  "relevance_score": 15,
+  "data_types": {
+    "Name": "object",
+    "Age": "int64",
+    "Gender": "object",
+    "Education": "object",
+    "Monthly Income": "int64"
+  },
+  "missing_data": {
+    "Name": 0,
+    "Age": 0,
+    "Gender": 0,
+    "Education": 0,
+    "Monthly Income": 0
+  },
+  "categorical_distributions": {
+    "Gender": {
+      "Female": 

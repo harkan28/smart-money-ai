@@ -1,0 +1,14 @@
+{
+  "total_feedback": 5,
+  "total_corrections": 0,
+  "total_retrains": 0,
+  "accuracy_improvements": [],
+  "last_retrain_date": null,
+  "category_feedback_count": {
+    "ENTERTAINMENT": 1,
+    "SHOPPING": 1,
+    "FOOD_DINING": 1,
+    "MISCELLANEOUS": 2
+  },
+  "model_version": 1
+}

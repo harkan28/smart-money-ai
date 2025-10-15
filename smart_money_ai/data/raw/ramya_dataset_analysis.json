@@ -1,0 +1,92 @@
+{
+  "dataset_name": "ramyapintchy/personal-finance-data",
+  "analysis_date": "2025-10-15",
+  "file_analyses": {
+    "Personal_Finance_Dataset.csv": {
+      "filename": "Personal_Finance_Dataset.csv",
+      "shape": [
+        1500,
+        5
+      ],
+      "columns": [
+        "Date",
+        "Transaction Description",
+        "Category",
+        "Amount",
+        "Type"
+      ],
+      "sample_data": [
+        {
+          "Date": "2020-01-02",
+          "Transaction Description": "Score each.",
+          "Category": "Food & Drink",
+          "Amount": 1485.69,
+          "Type": "Expense"
+        },
+        {
+          "Date": "2020-01-02",
+          "Transaction Description": "Quality throughout.",
+          "Category": "Utilities",
+          "Amount": 1475.58,
+          "Type": "Expense"
+        },
+        {
+          "Date": "2020-01-04",
+          "Transaction Description": "Instead ahead despite measure ago.",
+          "Category": "Rent",
+          "Amount": 1185.08,
+          "Type": "Expense"
+        }
+      ],
+      "data_types": {
+        "Date": "object",
+        "Transaction Description": "object",
+        "Category": "object",
+        "Amount": "float64",
+        "Type": "object"
+      },
+      "missing_values": {
+        "Date": 0,
+        "Transaction Description": 0,
+        "Category": 0,
+        "Amount": 0,
+        "Type": 0
+      },
+      "unique_values": {
+        "Date": 1025,
+        "Transaction Description": 1500,
+        "Category": 10,
+        "Amount": 1492,
+        "Type": 2
+      },
+      "relevance_score": 42,
+      "relevant_columns": [
+        "Transaction Description",
+        "Category",
+        "Amount"
+      ]
+    }
+  },
+  "integration_assessment": {
+    "level": "LOW-MEDIUM",
+    "recommendation": "Limited integration potential. 1,500 records with 42.0/100 relevance. May be useful for specific features but not a priority integration.",
+    "next_steps": [
+      "Focus on highest-relevance data subsets",
+      "Consider data as supplementary enhancement only"
+    ]
+  },
+  "comparison_with_existing": {
+    "current_dataset_1": {
+      "name": "shriyashjagtap/indian-personal-finance-and-spending-habits",
+      "records": 20000,
+      "relevance": 60,
+      "status": "integrated"
+    },
+    "current_dataset_2": {
+      "name": "sudarsan27/investment-survey-dataset",
+      "records": 100,
+      "relevance": 75,
+      "status": "integrated"
+    }
+  }
+}

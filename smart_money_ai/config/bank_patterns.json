@@ -1,0 +1,260 @@
+{
+  "banks": {
+    "HDFC": {
+      "identifiers": ["HDFCBK", "HDFC", "HDFCBANK", "HDFC-BANK"],
+      "debit_patterns": [
+        "HDFC Bank: Rs\\.?(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) on ([\\d\\-]+) at (.+?)\\(UPI\\)",
+        "HDFC Bank: Rs\\.?(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) on ([\\d\\-]+) for (.+?) Avbl Bal",
+        "Thank you for using your HDFC Bank Card ending (\\d+) for Rs\\.?(\\d+\\.?\\d*) at (.+?) on ([\\d\\-]+)",
+        "Rs\\.?(\\d+\\.?\\d*) debited from HDFC Bank A/c \\*\\*(\\d+) on ([\\d\\-]+) for (.+?)\\. Avbl",
+        "HDFC Bank: INR (\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)"
+      ],
+      "credit_patterns": [
+        "HDFC Bank: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) on ([\\d\\-]+) from (.+)",
+        "Rs\\.?(\\d+\\.?\\d*) credited to HDFC Bank A/c \\*\\*(\\d+) on ([\\d\\-]+) (.+)"
+      ],
+      "balance_pattern": "Avbl Bal: Rs\\.?([0-9,]+\\.?\\d*)",
+      "reference_pattern": "Ref#\\s*(\\w+)"
+    },
+    "SBI": {
+      "identifiers": ["SBIINB", "SBICRD", "SBI", "SBIUPI", "SBIATM"],
+      "debit_patterns": [
+        "SBI: Rs (\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) on (\\w+) for UPI/(.+?)/(.+?)@.+? Ref# (\\w+)",
+        "SBI Card: Purchase of INR (\\d+\\.?\\d*) using Card \\*\\*(\\d+) at (.+?) on ([\\d/]+)",
+        "SBI: Rs\\.?(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) on ([\\d\\-]+) (.+?) Balance",
+        "Dear SBI Customer, Rs\\.(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) for (.+?) on ([\\d\\-]+)",
+        "SBI ATM: Rs\\.(\\d+\\.?\\d*) withdrawn from A/c \\*\\*(\\d+) at (.+?) on ([\\d\\-]+)"
+      ],
+      "credit_patterns": [
+        "SBI: Rs (\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) on (\\w+) from (.+)",
+        "SBI: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)"
+      ],
+      "balance_pattern": "Avl Bal Rs ([0-9,]+\\.?\\d*)",
+      "reference_pattern": "Ref# (\\w+)"
+    },
+    "ICICI": {
+      "identifiers": ["ICICIB", "ICICI", "ICICIC", "ICICIBANK"],
+      "debit_patterns": [
+        "ICICI Bank A/c \\*\\*(\\d+) debited with Rs\\.?(\\d+\\.?\\d*) on ([\\d\\-]+) UPI-(.+?) Balance",
+        "ICICI Bank Credit Card \\*\\*(\\d+) used for Rs\\.?(\\d+\\.?\\d*) at (.+?) on ([\\d\\-]+)",
+        "ICICI Bank: Rs\\.?(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "Dear Customer, INR (\\d+\\.?\\d*) debited from ICICI Bank A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "ICICI Bank ATM: Rs\\.(\\d+\\.?\\d*) withdrawn from A/c \\*\\*(\\d+) at (.+?) on ([\\d\\-]+)"
+      ],
+      "credit_patterns": [
+        "ICICI Bank A/c \\*\\*(\\d+) credited with Rs\\.?(\\d+\\.?\\d*) on ([\\d\\-]+) from (.+)",
+        "ICICI Bank: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)"
+      ],
+      "balance_pattern": "Balance: Rs\\.?([0-9,]+\\.?\\d*)",
+      "reference_pattern": "Ref No: (\\w+)"
+    },
+    "AXIS": {
+      "identifiers": ["AXISBK", "AXIS", "AXISBANK", "AXIS-BANK"],
+      "debit_patterns": [
+        "AXIS BANK: Rs (\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) on ([\\d\\-]+) at (.+?) via UPI",
+        "Axis Bank Card \\*\\*(\\d+): Rs\\.?(\\d+\\.?\\d*) spent at (.+?) on ([\\d\\-]+)",
+        "AXIS BANK: INR (\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "Dear Customer, Rs\\.(\\d+\\.?\\d*) debited from AXIS Bank A/c \\*\\*(\\d+) for (.+?) on ([\\d\\-]+)",
+        "AXIS Bank ATM: Rs\\.(\\d+\\.?\\d*) withdrawn from A/c \\*\\*(\\d+) at (.+?) on ([\\d\\-]+)"
+      ],
+      "credit_patterns": [
+        "AXIS BANK: Rs (\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) on ([\\d\\-]+) from (.+)",
+        "AXIS Bank: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)"
+      ],
+      "balance_pattern": "Avl Bal: Rs ([0-9,]+\\.?\\d*)",
+      "reference_pattern": "UPI Ref# (\\w+)"
+    },
+    "KOTAK": {
+      "identifiers": ["KOTAK", "KMB", "KOTAKB", "KOTAKBANK"],
+      "debit_patterns": [
+        "Kotak Bank: Rs\\.?(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) on ([\\d\\-]+) (.+?) Avl bal",
+        "Kotak Credit Card \\*\\*(\\d+): Rs\\.?(\\d+\\.?\\d*) spent on (.+?) ([\\d\\-]+)",
+        "Kotak Mahindra Bank: INR (\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "Dear Customer, Rs\\.(\\d+\\.?\\d*) debited from Kotak A/c \\*\\*(\\d+) for (.+?) on ([\\d\\-]+)",
+        "Kotak ATM: Rs\\.(\\d+\\.?\\d*) withdrawn from A/c \\*\\*(\\d+) at (.+?) on ([\\d\\-]+)"
+      ],
+      "credit_patterns": [
+        "Kotak Bank: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) on ([\\d\\-]+) (.+)",
+        "Kotak Mahindra Bank: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)"
+      ],
+      "balance_pattern": "Avl bal Rs\\.?([0-9,]+\\.?\\d*)",
+      "reference_pattern": "Txn# (\\w+)"
+    },
+    "PNB": {
+      "identifiers": ["PNBSMS", "PNB", "PUNJAB", "PNBBANK"],
+      "debit_patterns": [
+        "PNB: Rs\\.?(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) on ([\\d\\-]+) (.+?) Avl Bal",
+        "Punjab National Bank: INR (\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "PNB ATM: Rs\\.(\\d+\\.?\\d*) withdrawn from A/c \\*\\*(\\d+) at (.+?) on ([\\d\\-]+)",
+        "PNB Card: Rs\\.(\\d+\\.?\\d*) spent at (.+?) using Card \\*\\*(\\d+) on ([\\d\\-]+)"
+      ],
+      "credit_patterns": [
+        "PNB: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) on ([\\d\\-]+) (.+)",
+        "Punjab National Bank: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)"
+      ],
+      "balance_pattern": "Avl Bal Rs\\.?([0-9,]+\\.?\\d*)",
+      "reference_pattern": "Ref\\s+(\\w+)"
+    },
+    "BOB": {
+      "identifiers": ["BOBSMS", "BOB", "BARODA", "BANKOFBARODA"],
+      "debit_patterns": [
+        "Bank of Baroda: Rs\\.?(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "BOB: INR (\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) for (.+?) on ([\\d\\-]+)",
+        "BOB ATM: Rs\\.(\\d+\\.?\\d*) withdrawn from A/c \\*\\*(\\d+) at (.+?) on ([\\d\\-]+)",
+        "BOB Card: Rs\\.(\\d+\\.?\\d*) spent at (.+?) using Card \\*\\*(\\d+) on ([\\d\\-]+)"
+      ],
+      "credit_patterns": [
+        "Bank of Baroda: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "BOB: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) from (.+?) on ([\\d\\-]+)"
+      ],
+      "balance_pattern": "Avl Bal: Rs\\.?([0-9,]+\\.?\\d*)",
+      "reference_pattern": "Ref No\\s+(\\w+)"
+    },
+    "CANARA": {
+      "identifiers": ["CANBNK", "CANARA", "CANARABANK"],
+      "debit_patterns": [
+        "Canara Bank: Rs\\.?(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "CANARA BANK: INR (\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) for (.+?) on ([\\d\\-]+)",
+        "Canara ATM: Rs\\.(\\d+\\.?\\d*) withdrawn from A/c \\*\\*(\\d+) at (.+?) on ([\\d\\-]+)"
+      ],
+      "credit_patterns": [
+        "Canara Bank: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "CANARA BANK: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) from (.+?) on ([\\d\\-]+)"
+      ],
+      "balance_pattern": "Avl Bal Rs\\.?([0-9,]+\\.?\\d*)",
+      "reference_pattern": "Ref\\s+(\\w+)"
+    },
+    "UNION": {
+      "identifiers": ["UNIONB", "UNION", "UNIONBANK"],
+      "debit_patterns": [
+        "Union Bank: Rs\\.?(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "UNION BANK: INR (\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) for (.+?) on ([\\d\\-]+)",
+        "Union ATM: Rs\\.(\\d+\\.?\\d*) withdrawn from A/c \\*\\*(\\d+) at (.+?) on ([\\d\\-]+)"
+      ],
+      "credit_patterns": [
+        "Union Bank: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)"
+      ],
+      "balance_pattern": "Avl Bal: Rs\\.?([0-9,]+\\.?\\d*)",
+      "reference_pattern": "Ref\\s+(\\w+)"
+    },
+    "IDBI": {
+      "identifiers": ["IDBI", "IDBIBANK", "IDBI-BANK"],
+      "debit_patterns": [
+        "IDBI Bank: Rs\\.?(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "IDBI: INR (\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) for (.+?) on ([\\d\\-]+)"
+      ],
+      "credit_patterns": [
+        "IDBI Bank: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)"
+      ],
+      "balance_pattern": "Avl Bal: Rs\\.?([0-9,]+\\.?\\d*)",
+      "reference_pattern": "Ref\\s+(\\w+)"
+    },
+    "FEDERAL": {
+      "identifiers": ["FEDBNK", "FEDERAL", "FEDERALBANK"],
+      "debit_patterns": [
+        "Federal Bank: Rs\\.?(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "FEDERAL BANK: INR (\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) for (.+?) on ([\\d\\-]+)"
+      ],
+      "credit_patterns": [
+        "Federal Bank: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)"
+      ],
+      "balance_pattern": "Avl Bal: Rs\\.?([0-9,]+\\.?\\d*)",
+      "reference_pattern": "Ref\\s+(\\w+)"
+    },
+    "INDUSIND": {
+      "identifiers": ["INDUSIND", "INDUSINDB", "INDUSIND-BANK"],
+      "debit_patterns": [
+        "IndusInd Bank: Rs\\.?(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "INDUSIND BANK: INR (\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) for (.+?) on ([\\d\\-]+)"
+      ],
+      "credit_patterns": [
+        "IndusInd Bank: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)"
+      ],
+      "balance_pattern": "Avl Bal: Rs\\.?([0-9,]+\\.?\\d*)",
+      "reference_pattern": "Ref\\s+(\\w+)"
+    },
+    "YES": {
+      "identifiers": ["YESBANK", "YES", "YESBNK"],
+      "debit_patterns": [
+        "YES BANK: Rs\\.?(\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)",
+        "Yes Bank: INR (\\d+\\.?\\d*) debited from A/c \\*\\*(\\d+) for (.+?) on ([\\d\\-]+)"
+      ],
+      "credit_patterns": [
+        "YES BANK: Rs\\.?(\\d+\\.?\\d*) credited to A/c \\*\\*(\\d+) (.+?) on ([\\d\\-]+)"
+      ],
+      "balance_pattern": "Avl Bal: Rs\\.?([0-9,]+\\.?\\d*)",
+      "reference_pattern": "Ref\\s+(\\w+)"
+    }
+  },
+  "upi_providers": {
+    "PHONEPE": {
+      "identifiers": ["PHONEPE", "PhonePe", "PHONEPAY"],
+      "debit_patterns": [
+        "PhonePe: You paid Rs\\.?(\\d+\\.?\\d*) to (.+?) UPI ID: (.+?) on ([\\d\\-]+)",
+        "PhonePe: Rs\\.?(\\d+\\.?\\d*) sent to (.+?) from (.+?) Bank on ([\\d\\-]+)",
+        "PhonePe payment of Rs\\.?(\\d+\\.?\\d*) to (.+?) successful on ([\\d\\-]+)"
+      ],
+      "reference_pattern": "UPI transaction ID: (\\w+)"
+    },
+    "GPAY": {
+      "identifiers": ["GPAY", "GooglePay", "GOOGLE-PAY"],
+      "debit_patterns": [
+        "Google Pay: You paid Rs\\.?(\\d+\\.?\\d*) to (.+?) UPI PIN on ([\\d\\-]+)",
+        "GPay: Rs\\.?(\\d+\\.?\\d*) paid to (.+?) from (.+?) on ([\\d\\-]+)",
+        "Google Pay payment of Rs\\.?(\\d+\\.?\\d*) to (.+?) successful"
+      ],
+      "reference_pattern": "UPI transaction ID: (\\w+)"
+    },
+    "PAYTM": {
+      "identifiers": ["PAYTM", "PayTM", "PAYTMWALLET"],
+      "debit_patterns": [
+        "Paytm: Rs\\.?(\\d+\\.?\\d*) paid to (.+?) on ([\\d\\-]+) UPI txn ID: (\\w+)",
+        "Paytm Wallet: Rs\\.?(\\d+\\.?\\d*) debited for (.+?) on ([\\d\\-]+)",
+        "Paytm payment of Rs\\.?(\\d+\\.?\\d*) to (.+?) successful"
+      ],
+      "reference_pattern": "UPI txn ID: (\\w+)"
+    },
+    "AMAZON": {
+      "identifiers": ["AMAZONPAY", "AMAZON-PAY", "AMZNPAY"],
+      "debit_patterns": [
+        "Amazon Pay: Rs\\.?(\\d+\\.?\\d*) paid to (.+?) on ([\\d\\-]+)",
+        "Amazon Pay: Payment of Rs\\.?(\\d+\\.?\\d*) to (.+?) successful"
+      ],
+      "reference_pattern": "Transaction ID: (\\w+)"
+    }
+  },
+  "otp_patterns": {
+    "transaction_otp": [
+      "OTP for transaction of Rs\\.?(\\d+\\.?\\d*) is (\\d{4,6})",
+      "Your transaction OTP is (\\d{4,6}) for Rs\\.?(\\d+\\.?\\d*)",
+      "Transaction verification code: (\\d{4,6}) for amount Rs\\.?(\\d+\\.?\\d*)"
+    ],
+    "login_otp": [
+      "Your login OTP is (\\d{4,6})",
+      "OTP for login: (\\d{4,6})",
+      "Login verification code: (\\d{4,6})"
+    ]
+  },
+  "fallback_patterns": {
+    "generic_debit": [
+      "Rs\\.?\\s*(\\d+\\.?\\d*)\\s*debited",
+      "Amount\\s*Rs\\.?\\s*(\\d+\\.?\\d*)\\s*debited",
+      "Debited\\s*Rs\\.?\\s*(\\d+\\.?\\d*)",
+      "withdrawn\\s*Rs\\.?\\s*(\\d+\\.?\\d*)",
+      "spent\\s*Rs\\.?\\s*(\\d+\\.?\\d*)"
+    ],
+    "generic_credit": [
+      "Rs\\.?\\s*(\\d+\\.?\\d*)\\s*credited",
+      "Amount\\s*Rs\\.?\\s*(\\d+\\.?\\d*)\\s*credited",
+      "Credited\\s*Rs\\.?\\s*(\\d+\\.?\\d*)",
+      "received\\s*Rs\\.?\\s*(\\d+\\.?\\d*)"
+    ],
+    "merchant_keywords": [
+      "at\\s+(.+?)\\s+on",
+      "to\\s+(.+?)\\s+on",
+      "from\\s+(.+?)\\s+on",
+      "via\\s+(.+?)\\s+",
+      "for\\s+(.+?)\\s+on"
+    ]
+  }
+}

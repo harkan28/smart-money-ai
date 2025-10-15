@@ -1,0 +1,194 @@
+{
+  "dataset_info": {
+    "name": "sudarsan27/investment-survey-dataset",
+    "download_path": "/Users/harshitrawal/.cache/kagglehub/datasets/sudarsan27/investment-survey-dataset/versions/1",
+    "analysis_date": "2025-10-15T15:51:22.696809",
+    "total_files": 1,
+    "file_list": [
+      {
+        "filename": "investment_survey.csv",
+        "size_mb": 0.01,
+        "extension": ".csv"
+      }
+    ]
+  },
+  "analysis_results": {
+    "investment_survey.csv": {
+      "rows": 100,
+      "columns": 11,
+      "column_names": [
+        "Gender",
+        "Age",
+        "Working_professional",
+        "Annual_income",
+        "Mode_of_investment",
+        "Investment_per_month",
+        "Motivation_cause",
+        "Resources_used",
+        "Goal_for_investment",
+        "Duration_to_save(in_Years) ",
+        "Unnamed: 10"
+      ],
+      "data_types": {
+        "Gender": "object",
+        "Age": "int64",
+        "Working_professional": "int64",
+        "Annual_income": "int64",
+        "Mode_of_investment": "object",
+        "Investment_per_month": "object",
+        "Motivation_cause": "object",
+        "Resources_used": "object",
+        "Goal_for_investment": "object",
+        "Duration_to_save(in_Years) ": "object",
+        "Unnamed: 10": "float64"
+      },
+      "sample_data": [
+        {
+          "Gender": "Male",
+          "Age": 19,
+          "Working_professional": 0,
+          "Annual_income": 0,
+          "Mode_of_investment": "Banking - RD, FD",
+          "Investment_per_month": "200",
+          "Motivation_cause": "Family member",
+          "Resources_used": "Family members/Friends",
+          "Goal_for_investment": "Wealth generation",
+          "Duration_to_save(in_Years) ": "10",
+          "Unnamed: 10": NaN
+        },
+        {
+          "Gender": "Female",
+          "Age": 24,
+          "Working_professional": 0,
+          "Annual_income": 0,
+          "Mode_of_investment": "Banking - RD, FD",
+          "Investment_per_month": "1000",
+          "Motivation_cause": "Social media/ Articles",
+          "Resources_used": "Mobile applications",
+          "Goal_for_investment": "Wealth generation",
+          "Duration_to_save(in_Years) ": "3",
+          "Unnamed: 10": NaN
+        },
+        {
+          "Gender": "Male",
+          "Age": 24,
+          "Working_professional": 1,
+          "Annual_income": 400000,
+          "Mode_of_investment": "Stocks - Intraday, long term",
+          "Investment_per_month": "5000",
+          "Motivation_cause": "Social media/ Articles",
+          "Resources_used": "News articles / Current affairs",
+          "Goal_for_investment": "Planning for finacial freedom after Retirement",
+          "Duration_to_save(in_Years) ": "10",
+          "Unnamed: 10": NaN
+        },
+        {
+          "Gender": "Male",
+          "Age": 22,
+          "Working_professional": 1,
+          "Annual_income": 150000,
+          "Mode_of_investment": "Mutual Funds",
+          "Investment_per_month": "2000",
+          "Motivation_cause": "Agents/Investment brokers",
+          "Resources_used": "News articles / Current affairs",
+          "Goal_for_investment": "Wealth generation",
+          "Duration_to_save(in_Years) ": "10",
+          "Unnamed: 10": NaN
+        },
+        {
+          "Gender": "Male",
+          "Age": 25,
+          "Working_professional": 1,
+          "Annual_income": 250000,
+          "Mode_of_investment": "Mutual Funds",
+          "Investment_per_month": "2000",
+          "Motivation_cause": "Self Interest ",
+          "Resources_used": "Books",
+          "Goal_for_investment": "Wealth generation",
+          "Duration_to_save(in_Years) ": "15",
+          "Unnamed: 10": NaN
+        }
+      ],
+      "missing_values": {
+        "Gender": 0,
+        "Age": 0,
+        "Working_professional": 0,
+        "Annual_income": 0,
+        "Mode_of_investment": 0,
+        "Investment_per_month": 0,
+        "Motivation_cause": 0,
+        "Resources_used": 0,
+        "Goal_for_investment": 0,
+        "Duration_to_save(in_Years) ": 0,
+        "Unnamed: 10": 100
+      },
+      "file_size_mb": 0.01,
+      "investment_columns": [
+        [
+          "Age",
+          "age"
+        ],
+        [
+          "Annual_income",
+          "income"
+        ],
+        [
+          "Mode_of_investment",
+          "investment"
+        ],
+        [
+          "Investment_per_month",
+          "investment"
+        ],
+        [
+          "Goal_for_investment",
+          "investment"
+        ]
+      ],
+      "investment_patterns": {
+        "Age Range (Age)": "18-56 years (avg: 25.4)",
+        "Income Range (Annual_income)": "\u20b90-\u20b9600,000 (avg: \u20b9166,441)"
+      }
+    }
+  },
+  "investment_assessment": {
+    "overall_score": 75.0,
+    "file_scores": {
+      "investment_survey.csv": {
+        "score": 75,
+        "strengths": [
+          "Investment Preferences data present",
+          "Demographics data present",
+          "Goals Objectives data present",
+          "Rich feature set",
+          "Investment patterns identified"
+        ]
+      }
+    },
+    "strengths": [],
+    "weaknesses": [],
+    "use_cases": [
+      "Enhance risk profiling accuracy",
+      "Improve investment recommendation algorithms",
+      "Build user preference prediction models",
+      "Create demographic-based investment strategies",
+      "Validate current recommendation logic"
+    ],
+    "integration_potential": [
+      "Direct integration into investment recommendation engine",
+      "Enhancement of risk assessment algorithms",
+      "Training data for preference prediction models",
+      "Validation dataset for current investment logic"
+    ],
+    "detailed_report": "\n\ud83d\udcca INVESTMENT DATASET RELEVANCE ANALYSIS\n------------------------------------------------------------\nOverall Score: 75.0/100 (High Relevance)\n\n\ud83d\udcc1 File Analysis:\n   investment_survey.csv: 75/100 - Investment Preferences data present, Demographics data present, Goals Objectives data present, Rich feature set, Investment patterns identified\n\n\ud83d\udca1 Potential Use Cases:\n   \u2022 Enhance risk profiling accuracy\n   \u2022 Improve investment recommendation algorithms\n   \u2022 Build user preference prediction models\n   \u2022 Create demographic-based investment strategies\n   \u2022 Validate current recommendation logic\n\n\ud83d\udd27 Integration Opportunities:\n   \u2022 Direct integration into investment recommendation engine\n   \u2022 Enhancement of risk assessment algorithms\n   \u2022 Training data for preference prediction models\n   \u2022 Validation dataset for current investment logic\n\n\ud83c\udfaf Recommendation: HIGHLY RECOMMENDED\n"
+  },
+  "integration_recommendations": [
+    "Immediately integrate for investment recommendation enhancement",
+    "Use for improving risk profiling accuracy",
+    "Train preference prediction models with this data",
+    "Create demographic-based investment strategies",
+    "Validate and improve current investment algorithms",
+    "Combine with existing personal finance dataset for comprehensive insights",
+    "Consider for A/B testing investment recommendation improvements"
+  ]
+}
