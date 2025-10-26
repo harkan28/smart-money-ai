@@ -1,0 +1,1172 @@
+"""
+Smart Money AI - Enhanced 4-Part ML System with Real-Time Market Intelligence
+===========================================================================
+
+Complete financial intelligence system with:
+1. SMS PARSING MODEL - Extract transaction data from banking SMS
+2. EXPENSE CATEGORIZATION MODEL - Automatically categorize expenses  
+3. SAVINGS & BUDGETING MODEL - Monthly savings analysis and optimization
+4. INVESTMENT RECOMMENDATION MODEL - Stock, mutual fund, gold/silver recommendations
++ REAL-TIME MARKET ENGINE - Live market data and investment intelligence
++ AUTOMATED TRADING ENGINE - Breeze API integration for automated trading
+
+World-class financial intelligence system with multi-dataset integration & live market feeds
+"""
+
+import sys
+import os
+from typing import Dict, List, Optional, Any
+from datetime import datetime, timedelta
+
+# Add project root to path for imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Import configuration system
+from config.settings import get_config, ConfigManager
+
+# Import core components
+from .intelligence.spending_analyzer.spending_comparator import SpendingComparator
+from .intelligence.investment_engine.enhanced_investment_engine import EnhancedInvestmentEngine
+from .core.sms_parser.main_parser import SMSParser
+from .core.budget_engine.budget_creator import BudgetCreator
+from .core.categorizer.expense_categorizer import ExpenseCategorizer
+
+# Import integrations
+try:
+    from integrations.finnhub_market_data import FinnhubRealTimeAnalyzer
+    REAL_TIME_MARKET_AVAILABLE = True
+except ImportError:
+    REAL_TIME_MARKET_AVAILABLE = False
+    FinnhubRealTimeAnalyzer = None
+
+try:
+    from integrations.breeze_trading import SmartMoneyBreezeIntegration
+    TRADING_AVAILABLE = True
+except ImportError:
+    TRADING_AVAILABLE = False
+    SmartMoneyBreezeIntegration = None
+
+# Import utilities
+from utils.common_utils import (
+    sanitize_amount, extract_date_from_text, calculate_portfolio_metrics,
+    format_currency, generate_transaction_id, ValidationError
+)
+
+class SmartMoneyAI:
+    """
+    Enhanced Smart Money AI System with Real-Time Market Intelligence
+    ================================================================
+    
+    Complete financial intelligence with 4-part ML system, real-time market data,
+    and automated trading capabilities.
+    """
+    
+    def __init__(self, finnhub_api_key: str = None, breeze_app_key: str = None, 
+                 breeze_secret_key: str = None, breeze_session_token: str = None):
+        """Initialize Smart Money AI with configuration-based setup"""
+        
+        print("🚀 Initializing Enhanced Smart Money AI System...")
+        
+        # Get or update configuration
+        self.config = get_config()
+        
+        # Update configuration with provided API keys
+        if any([finnhub_api_key, breeze_app_key, breeze_secret_key, breeze_session_token]):
+            self.config.update_api_keys(
+                finnhub_api_key=finnhub_api_key,
+                breeze_app_key=breeze_app_key,
+                breeze_secret_key=breeze_secret_key,
+                breeze_session_token=breeze_session_token
+            )
+        
+        # Initialize core ML components
+        self._initialize_core_components()
+        
+        # Initialize real-time market data
+        self._initialize_market_data()
+        
+        # Initialize trading engine
+        self._initialize_trading_engine()
+        
+        # Display system status
+        self._display_system_status()
+    
+    def _initialize_core_components(self):
+        """Initialize core ML components"""
+        try:
+            self.sms_parser = SMSParser()
+            self.spending_analyzer = SpendingComparator()
+            self.investment_engine = EnhancedInvestmentEngine()
+            self.budget_creator = BudgetCreator()
+            print("✅ Core ML components loaded")
+        except Exception as e:
+            print(f"⚠️ Error loading core components: {e}")
+            
+        try:
+            self.expense_categorizer = ExpenseCategorizer()
+            print("✅ Part 2: Expense Categorization Model loaded")
+        except Exception as e:
+            print(f"⚠️ Could not load expense categorizer: {e}")
+            self.expense_categorizer = None
+        
+        try:
+            from .ml_models.savings_budgeting_model import SavingsAndBudgetingModel
+            self.savings_model = SavingsAndBudgetingModel()
+            print("✅ Part 3: Savings & Budgeting Model loaded")
+        except Exception as e:
+            print(f"⚠️ Could not load savings model: {e}")
+            self.savings_model = None
+        
+        try:
+            from .ml_models.investment_recommendation_model import InvestmentRecommendationModel
+            self.investment_ml_model = InvestmentRecommendationModel()
+            print("✅ Part 4: Investment Recommendation Model loaded")
+        except Exception as e:
+            print(f"⚠️ Could not load investment ML model: {e}")
+            self.investment_ml_model = None
+    
+    def _initialize_market_data(self):
+        """Initialize real-time market data engine"""
+        self.real_time_analyzer = None
+        
+        if REAL_TIME_MARKET_AVAILABLE and self.config.api_config.finnhub_api_key:
+            try:
+                self.real_time_analyzer = FinnhubRealTimeAnalyzer(
+                    self.config.api_config.finnhub_api_key
+                )
+                print("✅ Real-Time Market Data Engine loaded")
+                print("🔥 LIVE MARKET INTELLIGENCE ACTIVE!")
+            except Exception as e:
+                print(f"⚠️ Could not initialize real-time market engine: {e}")
+                self.real_time_analyzer = None
+        elif not self.config.api_config.finnhub_api_key:
+            print("💡 Real-time market data disabled - no Finnhub API key")
+        else:
+            print("⚠️ Real-time market data not available")
+    
+    def _initialize_trading_engine(self):
+        """Initialize automated trading engine"""
+        self.breeze_integration = None
+        
+        if (TRADING_AVAILABLE and 
+            self.config.api_config.breeze_app_key and 
+            self.config.api_config.breeze_secret_key):
+            try:
+                self.breeze_integration = SmartMoneyBreezeIntegration(
+                    self.config.api_config.breeze_app_key,
+                    self.config.api_config.breeze_secret_key,
+                    self.config.api_config.breeze_session_token
+                )
+                print("✅ Breeze API Trading Engine loaded")
+                print("🔥 AUTOMATED TRADING CAPABILITIES ACTIVE!")
+            except Exception as e:
+                print(f"⚠️ Could not initialize Breeze trading engine: {e}")
+                self.breeze_integration = None
+        elif not (self.config.api_config.breeze_app_key and self.config.api_config.breeze_secret_key):
+            print("💡 Automated trading disabled - no Breeze API credentials")
+        else:
+            print("⚠️ Automated trading not available")
+    
+    def __init__(self, finnhub_api_key: str = None, breeze_app_key: str = None, 
+                 breeze_secret_key: str = None, breeze_session_token: str = None):
+        """Initialize Smart Money AI with all components including real-time market data and trading"""
+        print("🚀 Initializing Enhanced Smart Money AI System...")
+        
+        # Initialize existing core components
+        self.sms_parser = SMSParser()
+        self.spending_analyzer = SpendingComparator()
+        self.investment_engine = EnhancedInvestmentEngine()
+        self.budget_creator = BudgetCreator()
+        
+        # Initialize Breeze API trading engine (optional)
+        self.breeze_integration = None
+        if breeze_app_key and breeze_secret_key:
+            try:
+                from .api.breeze_trading_engine import SmartMoneyBreezeIntegration
+                self.breeze_integration = SmartMoneyBreezeIntegration(
+                    breeze_app_key, breeze_secret_key, breeze_session_token
+                )
+                print("✅ Breeze API Trading Engine loaded")
+                print("🔥 AUTOMATED TRADING CAPABILITIES ACTIVE!")
+            except Exception as e:
+                print(f"⚠️ Could not initialize Breeze trading engine: {e}")
+                self.breeze_integration = None
+        
+        # Initialize new ML models (Parts 2, 3, 4)
+        try:
+            self.expense_categorizer = ExpenseCategorizer()
+            print("✅ Part 2: Expense Categorization Model loaded")
+        except Exception as e:
+            print(f"⚠️ Could not load expense categorizer: {e}")
+            self.expense_categorizer = None
+        
+        try:
+            from .ml_models.savings_budgeting_model import SavingsAndBudgetingModel
+            self.savings_model = SavingsAndBudgetingModel()
+            print("✅ Part 3: Savings & Budgeting Model loaded")
+        except Exception as e:
+            print(f"⚠️ Could not load savings model: {e}")
+            self.savings_model = None
+        
+        try:
+            from .ml_models.investment_recommendation_model import InvestmentRecommendationModel
+            self.investment_ml_model = InvestmentRecommendationModel()
+            print("✅ Part 4: Investment Recommendation Model loaded")
+        except Exception as e:
+            print(f"⚠️ Could not load investment ML model: {e}")
+            self.investment_ml_model = None
+        
+        # Initialize real-time market intelligence
+        self.real_time_analyzer = None
+        if finnhub_api_key and REAL_TIME_MARKET_AVAILABLE:
+            try:
+                self.real_time_analyzer = SmartMoneyRealTimeAnalyzer(finnhub_api_key)
+                print("✅ Real-Time Market Intelligence Engine loaded")
+                print("🔥 LIVE MARKET DATA INTEGRATION ACTIVE!")
+            except Exception as e:
+                print(f"⚠️ Could not initialize real-time market engine: {e}")
+        elif finnhub_api_key and not REAL_TIME_MARKET_AVAILABLE:
+            print("⚠️ Real-time market engine not available - missing dependencies")
+        else:
+            print("💡 Real-time market engine not initialized (no API key provided)")
+        
+        print("🎯 Enhanced Smart Money AI System Ready!")
+        if self.real_time_analyzer:
+            print("📈 System can now make predictions with LIVE MARKET DATA!")
+    
+    # ================================
+    # REAL-TIME MARKET INTELLIGENCE
+    # ================================
+    
+    def get_real_time_stock_analysis(self, symbol: str) -> Dict[str, Any]:
+        """Get comprehensive real-time stock analysis"""
+        if not self.real_time_analyzer:
+            return {'error': 'Real-time market engine not available. Initialize with Finnhub API key.'}
+        
+        return self.real_time_analyzer.get_comprehensive_analysis(symbol)
+    
+    def get_market_overview(self) -> Dict[str, Any]:
+        """Get real-time market overview and sentiment"""
+        if not self.real_time_analyzer:
+            return {'error': 'Real-time market engine not available. Initialize with Finnhub API key.'}
+        
+        return self.real_time_analyzer.get_market_overview()
+    
+    def monitor_investment_portfolio(self, symbols: List[str]) -> Dict[str, Any]:
+        """Monitor investment portfolio in real-time"""
+        if not self.real_time_analyzer:
+            return {'error': 'Real-time market engine not available. Initialize with Finnhub API key.'}
+        
+        return self.real_time_analyzer.monitor_portfolio(symbols)
+    
+    def get_real_time_investment_recommendations(self, user_profile: Dict, 
+                                               investment_amount: float,
+                                               symbols_to_analyze: List[str] = None) -> Dict[str, Any]:
+        """Get investment recommendations enhanced with real-time market data"""
+        
+        # Get base ML recommendations
+        base_recommendations = self.get_investment_recommendations(user_profile, investment_amount)
+        
+        # Enhance with real-time data if available
+        if self.real_time_analyzer and symbols_to_analyze:
+            real_time_data = {}
+            market_overview = self.real_time_analyzer.get_market_overview()
+            
+            for symbol in symbols_to_analyze:
+                try:
+                    analysis = self.real_time_analyzer.get_comprehensive_analysis(symbol)
+                    real_time_data[symbol] = analysis
+                except Exception as e:
+                    real_time_data[symbol] = {'error': str(e)}
+            
+            # Merge recommendations
+            enhanced_recommendations = {
+                **base_recommendations,
+                'real_time_analysis': real_time_data,
+                'market_conditions': market_overview,
+                'enhanced_recommendations': self._merge_ml_and_realtime_recommendations(
+                    base_recommendations, real_time_data, market_overview
+                ),
+                'timestamp': datetime.now().isoformat()
+            }
+            
+            return enhanced_recommendations
+        
+        return base_recommendations
+    
+    def _merge_ml_and_realtime_recommendations(self, ml_recs: Dict, real_time_data: Dict, 
+                                             market_overview: Dict) -> Dict[str, Any]:
+        """Merge ML recommendations with real-time market intelligence"""
+        
+        enhanced_recs = {
+            'action': ml_recs.get('recommendation', 'Hold'),
+            'confidence': 50,
+            'market_timing': 'Neutral',
+            'risk_assessment': 'Medium',
+            'recommendations': []
+        }
+        
+        # Analyze market sentiment
+        market_sentiment = market_overview.get('market_sentiment', 'Neutral')
+        
+        if market_sentiment == 'Bullish':
+            enhanced_recs['market_timing'] = 'Favorable for buying'
+            enhanced_recs['confidence'] += 10
+        elif market_sentiment == 'Bearish':
+            enhanced_recs['market_timing'] = 'Consider waiting or DCA approach'
+            enhanced_recs['confidence'] -= 10
+        
+        # Analyze individual stocks
+        strong_buy_signals = 0
+        strong_sell_signals = 0
+        
+        for symbol, data in real_time_data.items():
+            if 'error' not in data:
+                rec = data.get('investment_recommendation', {})
+                action = rec.get('action', 'Hold')
+                
+                if action in ['Strong Buy', 'Buy']:
+                    strong_buy_signals += 1
+                    enhanced_recs['recommendations'].append(
+                        f"{symbol}: {action} - {rec.get('reasons', [''])[0] if rec.get('reasons') else ''}"
+                    )
+                elif action in ['Strong Sell', 'Sell']:
+                    strong_sell_signals += 1
+        
+        # Adjust overall recommendation
+        if strong_buy_signals > strong_sell_signals:
+            if enhanced_recs['action'] in ['Hold', 'Conservative']:
+                enhanced_recs['action'] = 'Buy'
+            enhanced_recs['confidence'] += 15
+        elif strong_sell_signals > strong_buy_signals:
+            enhanced_recs['risk_assessment'] = 'High'
+            enhanced_recs['confidence'] -= 10
+        
+        enhanced_recs['confidence'] = max(20, min(95, enhanced_recs['confidence']))
+        
+        return enhanced_recs
+    
+    def create_live_investment_alert_system(self, symbols: List[str], 
+                                          price_thresholds: Dict[str, Dict]) -> Dict[str, Any]:
+        """Create real-time investment alert system"""
+        if not self.real_time_analyzer:
+            return {'error': 'Real-time market engine not available. Initialize with Finnhub API key.'}
+        
+        try:
+            self.real_time_analyzer.create_watchlist_alerts(symbols, price_thresholds)
+            return {
+                'status': 'success',
+                'message': f'Alert system created for {len(symbols)} symbols',
+                'monitored_symbols': symbols,
+                'alert_thresholds': price_thresholds,
+                'timestamp': datetime.now().isoformat()
+            }
+        except Exception as e:
+            return {'error': f'Failed to create alert system: {e}'}
+    
+    # ================================
+    # ENHANCED INVESTMENT SYSTEM
+    # ================================
+    
+    def get_investment_recommendations(self, user_profile: Dict, investment_amount: float = 100000,
+                                     investment_goals: List[str] = None) -> Dict[str, Any]:
+        """Get comprehensive investment recommendations using advanced ML"""
+        
+        if not self.investment_ml_model:
+            # Fallback to existing investment engine
+            return self.investment_engine.get_investment_recommendations(user_profile)
+        
+        return self.investment_ml_model.get_investment_recommendations(
+            user_profile, investment_amount, investment_goals
+        )
+    
+    # ================================
+    # PART 1: SMS PARSING MODEL
+    # ================================
+    
+    def parse_sms(self, sms_text: str) -> Dict[str, Any]:
+        """Parse SMS transaction and categorize automatically"""
+        
+        # Parse SMS using existing parser
+        sms_result = self.sms_parser.parse_transaction(sms_text)
+        
+        # Auto-categorize if expense categorizer is available
+        if self.expense_categorizer and sms_result.get('success'):
+            transaction_text = sms_result.get('description', '') or sms_text
+            amount = sms_result.get('amount', 0)
+            
+            categorization = self.expense_categorizer.categorize_transaction(transaction_text, amount)
+            sms_result['category'] = categorization['category']
+            sms_result['category_confidence'] = categorization['confidence']
+            sms_result['categorization_method'] = categorization['method']
+        
+        return sms_result
+    
+    def parse_sms_batch(self, sms_list: List[str]) -> Dict[str, Any]:
+        """Parse multiple SMS messages and provide batch categorization"""
+        
+        results = []
+        for sms in sms_list:
+            result = self.parse_sms(sms)
+            results.append(result)
+        
+        # Batch analysis
+        transactions = [r for r in results if r.get('success')]
+        
+        if self.expense_categorizer and transactions:
+            batch_analysis = self.expense_categorizer.get_category_insights(transactions)
+            
+            return {
+                'individual_results': results,
+                'batch_analysis': batch_analysis,
+                'total_processed': len(sms_list),
+                'successful_parses': len(transactions),
+                'processing_timestamp': datetime.now().isoformat()
+            }
+        
+        return {
+            'individual_results': results,
+            'total_processed': len(sms_list),
+            'successful_parses': len(transactions)
+        }
+    
+    # ================================
+    # PART 2: EXPENSE CATEGORIZATION
+    # ================================
+    
+    def categorize_expense(self, transaction_text: str, amount: float = 0) -> Dict[str, Any]:
+        """Categorize a single expense using ML model"""
+        
+        if not self.expense_categorizer:
+            return {'error': 'Expense categorizer not available'}
+        
+        return self.expense_categorizer.categorize_transaction(transaction_text, amount)
+    
+    def categorize_expenses_batch(self, transactions: List[Dict]) -> Dict[str, Any]:
+        """Categorize multiple expenses and provide insights"""
+        
+        if not self.expense_categorizer:
+            return {'error': 'Expense categorizer not available'}
+        
+        return self.expense_categorizer.categorize_transactions(transactions)
+    
+    def add_manual_transaction(self, description: str, amount: float, transaction_type: str = 'expense') -> Dict[str, Any]:
+        """Add manual transaction and auto-categorize"""
+        
+        transaction = {
+            'description': description,
+            'amount': amount,
+            'type': transaction_type,
+            'date': datetime.now().isoformat(),
+            'source': 'manual_entry'
+        }
+        
+        # Auto-categorize
+        if self.expense_categorizer:
+            categorization = self.expense_categorizer.categorize_transaction(description, amount)
+            transaction.update({
+                'category': categorization['category'],
+                'confidence': categorization['confidence'],
+                'method': categorization['method']
+            })
+        
+        return {
+            'transaction': transaction,
+            'success': True,
+            'message': f'Transaction added and categorized as {transaction.get("category", "unknown")}'
+        }
+    
+    # ================================
+    # PART 3: SAVINGS & BUDGETING MODEL
+    # ================================
+    
+    def analyze_monthly_savings(self, user_profile: Dict, transactions: List[Dict]) -> Dict[str, Any]:
+        """Comprehensive monthly savings analysis using ML"""
+        
+        if not self.savings_model:
+            return {'error': 'Savings model not available'}
+        
+        return self.savings_model.analyze_monthly_savings(user_profile, transactions)
+    
+    def optimize_budget(self, user_profile: Dict, current_expenses: Dict[str, float], 
+                       savings_goal: float) -> Dict[str, Any]:
+        """AI-powered budget optimization"""
+        
+        if not self.savings_model:
+            return {'error': 'Savings model not available'}
+        
+        return self.savings_model.optimize_budget(user_profile, current_expenses, savings_goal)
+    
+    def predict_future_savings(self, user_profile: Dict, historical_data: List[Dict], 
+                             months_ahead: int = 6) -> Dict[str, Any]:
+        """Predict future savings using ML"""
+        
+        if not self.savings_model:
+            return {'error': 'Savings model not available'}
+        
+        return self.savings_model.predict_future_savings(user_profile, historical_data, months_ahead)
+    
+    def create_smart_budget(self, user_profile: Dict, transaction_history: List[Dict] = None) -> Dict[str, Any]:
+        """Create AI-powered budget with ML insights"""
+        
+        # Use existing budget creator
+        base_budget = self.budget_creator.create_smart_budget(user_profile, transaction_history)
+        
+        # Enhance with ML insights if available
+        if self.savings_model and transaction_history:
+            ml_analysis = self.savings_model.analyze_monthly_savings(user_profile, transaction_history)
+            
+            # Merge insights
+            base_budget['ml_insights'] = ml_analysis
+            base_budget['savings_recommendations'] = ml_analysis.get('recommendations', [])
+            base_budget['savings_score'] = ml_analysis.get('savings_score', 50)
+        
+        return base_budget
+    
+    # ================================
+    # PART 4: INVESTMENT RECOMMENDATIONS
+    # ================================
+    
+    def get_investment_recommendations(self, user_profile: Dict, investment_amount: float = 100000,
+                                     investment_goals: List[str] = None) -> Dict[str, Any]:
+        """Get comprehensive investment recommendations using advanced ML"""
+        
+        if not self.investment_ml_model:
+            # Fallback to existing investment engine
+            return self.investment_engine.get_investment_recommendations(user_profile)
+        
+        return self.investment_ml_model.get_investment_recommendations(
+            user_profile, investment_amount, investment_goals
+        )
+    
+    def get_gold_investment_analysis(self, user_profile: Dict, investment_amount: float) -> Dict[str, Any]:
+        """Get sophisticated gold investment analysis using price prediction ML"""
+        
+        if not self.investment_ml_model:
+            return {'error': 'Investment ML model not available'}
+        
+        full_analysis = self.investment_ml_model.get_investment_recommendations(
+            user_profile, investment_amount
+        )
+        
+        return full_analysis.get('gold_analysis', {})
+    
+    def get_portfolio_optimization(self, user_profile: Dict, current_portfolio: Dict,
+                                 target_amount: float) -> Dict[str, Any]:
+        """Get portfolio optimization recommendations"""
+        
+        if not self.investment_ml_model:
+            return {'error': 'Investment ML model not available'}
+        
+        # Get comprehensive recommendations
+        recommendations = self.investment_ml_model.get_investment_recommendations(
+            user_profile, target_amount
+        )
+        
+        return {
+            'current_portfolio': current_portfolio,
+            'optimized_portfolio': recommendations.get('recommended_portfolio', {}),
+            'rebalancing_suggestions': recommendations.get('rebalancing_schedule', {}),
+            'performance_projections': recommendations.get('performance_projections', {}),
+            'optimization_timestamp': datetime.now().isoformat()
+        }
+    
+    # ================================
+    # COMPREHENSIVE SYSTEM FUNCTIONS
+    # ================================
+    
+    def process_complete_financial_data(self, user_profile: Dict, sms_data: List[str] = None,
+                                      manual_transactions: List[Dict] = None,
+                                      investment_amount: float = 100000) -> Dict[str, Any]:
+        """
+        Complete financial intelligence pipeline - all 4 models working together
+        
+        Args:
+            user_profile: User demographic and financial profile
+            sms_data: List of SMS messages to parse
+            manual_transactions: Manually added transactions
+            investment_amount: Amount for investment recommendations
+            
+        Returns:
+            Comprehensive financial analysis and recommendations
+        """
+        
+        complete_analysis = {
+            'user_profile': user_profile,
+            'processing_timestamp': datetime.now().isoformat(),
+            'sms_parsing': {},
+            'expense_categorization': {},
+            'savings_analysis': {},
+            'investment_recommendations': {},
+            'integrated_insights': []
+        }
+        
+        # Step 1: SMS Parsing (if SMS data provided)
+        all_transactions = []
+        if sms_data:
+            sms_result = self.parse_sms_batch(sms_data)
+            complete_analysis['sms_parsing'] = sms_result
+            
+            # Extract successful transactions
+            successful_transactions = [t for t in sms_result.get('individual_results', []) 
+                                     if t.get('success')]
+            all_transactions.extend(successful_transactions)
+        
+        # Step 2: Add manual transactions
+        if manual_transactions:
+            for manual_tx in manual_transactions:
+                processed_tx = self.add_manual_transaction(
+                    manual_tx.get('description', ''),
+                    manual_tx.get('amount', 0),
+                    manual_tx.get('type', 'expense')
+                )
+                if processed_tx.get('success'):
+                    all_transactions.append(processed_tx['transaction'])
+        
+        # Step 3: Expense Categorization & Insights
+        if all_transactions and self.expense_categorizer:
+            categorization_result = self.expense_categorizer.get_category_insights(all_transactions)
+            complete_analysis['expense_categorization'] = categorization_result
+        
+        # Step 4: Savings Analysis
+        if all_transactions and self.savings_model:
+            savings_analysis = self.savings_model.analyze_monthly_savings(user_profile, all_transactions)
+            complete_analysis['savings_analysis'] = savings_analysis
+        
+        # Step 5: Investment Recommendations
+        if self.investment_ml_model:
+            investment_recommendations = self.investment_ml_model.get_investment_recommendations(
+                user_profile, investment_amount
+            )
+            complete_analysis['investment_recommendations'] = investment_recommendations
+        
+        # Step 6: Generate Integrated Insights
+        complete_analysis['integrated_insights'] = self._generate_integrated_insights(complete_analysis)
+        
+        # Step 7: Calculate Comprehensive Financial Health Score
+        complete_analysis['financial_health_score'] = self._calculate_comprehensive_financial_health(
+            complete_analysis
+        )
+        
+        return complete_analysis
+    
+    def _generate_integrated_insights(self, analysis: Dict) -> List[str]:
+        """Generate insights from all 4 models working together"""
+        
+        insights = []
+        
+        # SMS parsing insights
+        if analysis.get('sms_parsing', {}).get('successful_parses', 0) > 0:
+            success_rate = (analysis['sms_parsing']['successful_parses'] / 
+                          analysis['sms_parsing']['total_processed']) * 100
+            insights.append(f"Successfully parsed {success_rate:.1f}% of SMS transactions")
+        
+        # Expense categorization insights
+        expense_data = analysis.get('expense_categorization', {})
+        if expense_data.get('category_breakdown'):
+            top_category = max(expense_data['category_breakdown'].items(), 
+                             key=lambda x: x[1]['amount'])
+            insights.append(f"Highest spending category: {top_category[0]} (₹{top_category[1]['amount']:.0f})")
+        
+        # Savings insights
+        savings_data = analysis.get('savings_analysis', {})
+        if savings_data.get('savings_score'):
+            score = savings_data['savings_score']
+            insights.append(f"Savings performance score: {score}/100")
+        
+        # Investment insights
+        investment_data = analysis.get('investment_recommendations', {})
+        if investment_data.get('risk_profile'):
+            risk_tolerance = investment_data['risk_profile']['risk_tolerance']
+            insights.append(f"Investment risk profile: {risk_tolerance}")
+        
+        # Gold investment insights
+        gold_data = investment_data.get('gold_analysis', {})
+        if gold_data.get('current_recommendation'):
+            gold_rec = gold_data['current_recommendation']
+            insights.append(f"Gold investment recommendation: {gold_rec}")
+        
+        return insights
+    
+    def _calculate_comprehensive_financial_health(self, analysis: Dict) -> Dict[str, Any]:
+        """Calculate comprehensive financial health score using all models"""
+        
+        total_score = 0
+        max_score = 0
+        component_scores = {}
+        
+        # SMS Parsing Score (20 points)
+        sms_data = analysis.get('sms_parsing', {})
+        if sms_data.get('total_processed', 0) > 0:
+            sms_success_rate = sms_data.get('successful_parses', 0) / sms_data['total_processed']
+            sms_score = sms_success_rate * 20
+            total_score += sms_score
+            component_scores['transaction_tracking'] = sms_score
+        max_score += 20
+        
+        # Expense Categorization Score (20 points)
+        expense_data = analysis.get('expense_categorization', {})
+        if expense_data.get('category_breakdown'):
+            # Score based on expense distribution (balanced is better)
+            categories = len(expense_data['category_breakdown'])
+            expense_score = min(categories * 3, 20)  # Max 20 points
+            total_score += expense_score
+            component_scores['expense_management'] = expense_score
+        max_score += 20
+        
+        # Savings Score (30 points)
+        savings_data = analysis.get('savings_analysis', {})
+        if savings_data.get('savings_score'):
+            savings_score = (savings_data['savings_score'] / 100) * 30
+            total_score += savings_score
+            component_scores['savings_discipline'] = savings_score
+        max_score += 30
+        
+        # Investment Score (30 points)
+        investment_data = analysis.get('investment_recommendations', {})
+        if investment_data.get('risk_profile'):
+            # Score based on risk profile appropriateness and diversification
+            portfolio = investment_data.get('recommended_portfolio', {})
+            diversification_score = portfolio.get('diversification_score', 50)
+            investment_score = (diversification_score / 100) * 30
+            total_score += investment_score
+            component_scores['investment_strategy'] = investment_score
+        max_score += 30
+        
+        # Calculate final score
+        final_score = (total_score / max_score * 100) if max_score > 0 else 0
+        
+        # Determine grade
+        if final_score >= 90:
+            grade = "A+"
+            status = "Excellent financial health"
+        elif final_score >= 80:
+            grade = "A"
+            status = "Very good financial health"
+        elif final_score >= 70:
+            grade = "B+"
+            status = "Good financial health"
+        elif final_score >= 60:
+            grade = "B"
+            status = "Average financial health"
+        elif final_score >= 50:
+            grade = "C"
+            status = "Below average financial health"
+        else:
+            grade = "D"
+            status = "Poor financial health - needs improvement"
+        
+        return {
+            'overall_score': final_score,
+            'grade': grade,
+            'status': status,
+            'component_scores': component_scores,
+            'max_possible_score': max_score,
+            'areas_for_improvement': self._identify_improvement_areas(component_scores),
+            'calculation_timestamp': datetime.now().isoformat()
+        }
+    
+    def _identify_improvement_areas(self, component_scores: Dict) -> List[str]:
+        """Identify areas that need improvement"""
+        
+        improvements = []
+        
+        for component, score in component_scores.items():
+            if component == 'transaction_tracking' and score < 15:
+                improvements.append("Improve transaction tracking - ensure all SMS are captured")
+            elif component == 'expense_management' and score < 15:
+                improvements.append("Better expense categorization - diversify spending categories")
+            elif component == 'savings_discipline' and score < 20:
+                improvements.append("Increase savings rate - aim for higher monthly savings")
+            elif component == 'investment_strategy' and score < 20:
+                improvements.append("Improve investment diversification and strategy")
+        
+        return improvements
+    
+    # ==================== TRADING AUTOMATION METHODS ====================
+    
+    def authenticate_trading_account(self, api_session: str) -> Dict[str, Any]:
+        """Authenticate with Breeze API for automated trading"""
+        if not self.breeze_integration:
+            return {'error': 'Breeze trading engine not initialized. Provide app_key and secret_key during initialization.'}
+        
+        try:
+            success = self.breeze_integration.authenticate_with_session(api_session)
+            if success:
+                customer_details = self.breeze_integration.breeze_engine.get_customer_details()
+                return {
+                    'status': 'authenticated',
+                    'customer_details': customer_details,
+                    'trading_permissions': customer_details.get('segments_allowed', {}),
+                    'message': 'Automated trading capabilities now active'
+                }
+            else:
+                return {'error': 'Authentication failed'}
+        except Exception as e:
+            return {'error': f'Authentication error: {str(e)}'}
+    
+    def get_live_portfolio_analysis(self) -> Dict[str, Any]:
+        """Get comprehensive live portfolio analysis with Smart Money AI insights"""
+        if not self.breeze_integration:
+            return {'error': 'Breeze trading engine not available'}
+        
+        try:
+            # Get portfolio data from Breeze API
+            portfolio_analysis = self.breeze_integration.get_portfolio_analysis()
+            if 'error' in portfolio_analysis:
+                return portfolio_analysis
+            
+            # Add Smart Money AI analysis
+            portfolio_stocks = portfolio_analysis.get('portfolio_stocks', [])
+            ai_insights = []
+            
+            for stock in portfolio_stocks:
+                symbol = stock.get('stock_code', '')
+                weight = stock.get('weight', 0)
+                
+                # Get real-time analysis if available
+                if self.real_time_analyzer:
+                    stock_analysis = self.real_time_analyzer.get_comprehensive_analysis(symbol)
+                    if 'error' not in stock_analysis:
+                        recommendation = stock_analysis.get('investment_recommendation', {})
+                        ai_insights.append({
+                            'symbol': symbol,
+                            'current_weight': weight * 100,
+                            'ai_recommendation': recommendation.get('action', 'Hold'),
+                            'confidence': recommendation.get('confidence', 50),
+                            'target_price': recommendation.get('target_price', 0),
+                            'smart_money_rating': self._calculate_smart_money_rating(stock_analysis)
+                        })
+            
+            return {
+                **portfolio_analysis,
+                'ai_insights': ai_insights,
+                'overall_portfolio_rating': self._calculate_portfolio_rating(ai_insights),
+                'rebalancing_suggestions': self._generate_rebalancing_suggestions(portfolio_stocks, ai_insights),
+                'analysis_timestamp': datetime.now().isoformat()
+            }
+            
+        except Exception as e:
+            return {'error': f'Portfolio analysis failed: {str(e)}'}
+    
+    def execute_ai_trading_strategy(self, strategy_config: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute automated trading based on Smart Money AI recommendations"""
+        if not self.breeze_integration:
+            return {'error': 'Breeze trading engine not available'}
+        
+        try:
+            # Extract strategy parameters
+            investment_amount = strategy_config.get('investment_amount', 50000)
+            risk_tolerance = strategy_config.get('risk_tolerance', 'moderate')
+            user_profile = strategy_config.get('user_profile', {})
+            symbols_to_analyze = strategy_config.get('symbols', ['RELIANCE', 'TCS', 'HDFCBANK', 'INFY', 'ITC'])
+            
+            # Get Smart Money AI recommendation
+            if self.real_time_analyzer:
+                recommendation = self.get_real_time_investment_recommendations(
+                    user_profile, investment_amount, symbols_to_analyze
+                )
+            else:
+                recommendation = self.get_investment_recommendations(user_profile, investment_amount)
+            
+            if 'error' in recommendation:
+                return {'error': f'Failed to generate AI recommendation: {recommendation["error"]}'}
+            
+            # Convert to format suitable for Breeze execution
+            trading_recommendation = self._convert_to_trading_format(recommendation, symbols_to_analyze)
+            
+            # Execute trades through Breeze API
+            execution_result = self.breeze_integration.execute_smart_money_recommendation(
+                trading_recommendation, investment_amount
+            )
+            
+            return {
+                'strategy_execution': execution_result,
+                'ai_recommendation': recommendation,
+                'risk_assessment': self._assess_execution_risk(execution_result),
+                'execution_timestamp': datetime.now().isoformat()
+            }
+            
+        except Exception as e:
+            return {'error': f'Strategy execution failed: {str(e)}'}
+    
+    def setup_automated_monitoring(self, monitoring_config: Dict[str, Any]) -> Dict[str, Any]:
+        """Setup automated portfolio monitoring with AI-powered alerts"""
+        if not self.breeze_integration:
+            return {'error': 'Breeze trading engine not available'}
+        
+        try:
+            # Configure monitoring parameters
+            alert_thresholds = monitoring_config.get('alert_thresholds', {
+                'stop_loss': 2.0,  # 2% stop loss
+                'take_profit': 6.0,  # 6% take profit
+                'volatility_spike': 5.0  # 5% sudden price movement
+            })
+            
+            check_interval = monitoring_config.get('check_interval_minutes', 15)
+            
+            # Start position monitoring
+            monitoring_result = self.breeze_integration.monitor_positions_with_alerts()
+            
+            if 'error' in monitoring_result:
+                return monitoring_result
+            
+            # Add AI-powered insights to alerts
+            enhanced_alerts = []
+            for alert in monitoring_result.get('alerts', []):
+                symbol = alert.get('symbol', '')
+                
+                # Get AI analysis for the alerted symbol
+                if self.real_time_analyzer:
+                    ai_analysis = self.real_time_analyzer.get_comprehensive_analysis(symbol)
+                    if 'error' not in ai_analysis:
+                        enhanced_alert = {
+                            **alert,
+                            'ai_recommendation': ai_analysis.get('investment_recommendation', {}),
+                            'market_sentiment': ai_analysis.get('technical_analysis', {}).get('trend', 'Neutral'),
+                            'smart_money_action': self._determine_smart_action(alert, ai_analysis)
+                        }
+                        enhanced_alerts.append(enhanced_alert)
+                    else:
+                        enhanced_alerts.append(alert)
+                else:
+                    enhanced_alerts.append(alert)
+            
+            return {
+                'monitoring_status': 'active',
+                'positions_monitored': len(monitoring_result.get('positions', [])),
+                'active_alerts': enhanced_alerts,
+                'alert_thresholds': alert_thresholds,
+                'check_interval_minutes': check_interval,
+                'next_check': (datetime.now() + timedelta(minutes=check_interval)).isoformat()
+            }
+            
+        except Exception as e:
+            return {'error': f'Monitoring setup failed: {str(e)}'}
+    
+    def get_trading_performance_analytics(self) -> Dict[str, Any]:
+        """Get comprehensive trading performance analytics with AI insights"""
+        if not self.breeze_integration:
+            return {'error': 'Breeze trading engine not available'}
+        
+        try:
+            # Get portfolio data
+            portfolio_analysis = self.breeze_integration.get_portfolio_analysis()
+            position_monitoring = self.breeze_integration.monitor_positions_with_alerts()
+            
+            if any('error' in data for data in [portfolio_analysis, position_monitoring]):
+                return {'error': 'Failed to fetch trading data'}
+            
+            # Calculate performance metrics
+            positions = position_monitoring.get('positions', [])
+            total_pnl = sum(pos.get('pnl_amount', 0) for pos in positions)
+            total_investment = sum(pos.get('avg_price', 0) * pos.get('quantity', 0) for pos in positions)
+            
+            # Calculate returns
+            if total_investment > 0:
+                total_return_percentage = (total_pnl / total_investment) * 100
+            else:
+                total_return_percentage = 0
+            
+            # Analyze winning/losing positions
+            winning_positions = [pos for pos in positions if pos.get('pnl_amount', 0) > 0]
+            losing_positions = [pos for pos in positions if pos.get('pnl_amount', 0) < 0]
+            
+            win_rate = (len(winning_positions) / len(positions) * 100) if positions else 0
+            
+            # Generate AI insights
+            ai_insights = {
+                'performance_rating': self._rate_trading_performance(total_return_percentage, win_rate),
+                'suggested_improvements': self._suggest_trading_improvements(positions),
+                'risk_assessment': self._assess_portfolio_risk(portfolio_analysis),
+                'diversification_analysis': self._analyze_diversification(positions)
+            }
+            
+            return {
+                'performance_summary': {
+                    'total_pnl': total_pnl,
+                    'total_return_percentage': total_return_percentage,
+                    'win_rate': win_rate,
+                    'total_positions': len(positions),
+                    'winning_positions': len(winning_positions),
+                    'losing_positions': len(losing_positions)
+                },
+                'portfolio_metrics': portfolio_analysis,
+                'ai_insights': ai_insights,
+                'analysis_timestamp': datetime.now().isoformat()
+            }
+            
+        except Exception as e:
+            return {'error': f'Performance analytics failed: {str(e)}'}
+    
+    def _calculate_smart_money_rating(self, stock_analysis: Dict) -> str:
+        """Calculate Smart Money AI rating for a stock"""
+        try:
+            recommendation = stock_analysis.get('investment_recommendation', {})
+            confidence = recommendation.get('confidence', 50)
+            action = recommendation.get('action', 'Hold').lower()
+            
+            if action == 'buy' and confidence > 70:
+                return 'Strong Buy'
+            elif action == 'buy' and confidence > 50:
+                return 'Buy'
+            elif action == 'sell' and confidence > 70:
+                return 'Strong Sell'
+            elif action == 'sell' and confidence > 50:
+                return 'Sell'
+            else:
+                return 'Hold'
+        except:
+            return 'Neutral'
+    
+    def _calculate_portfolio_rating(self, ai_insights: List[Dict]) -> str:
+        """Calculate overall portfolio rating based on AI insights"""
+        if not ai_insights:
+            return 'Unknown'
+        
+        buy_signals = sum(1 for insight in ai_insights if 'buy' in insight.get('ai_recommendation', '').lower())
+        total_signals = len(ai_insights)
+        
+        if buy_signals / total_signals > 0.7:
+            return 'Strong Portfolio'
+        elif buy_signals / total_signals > 0.5:
+            return 'Good Portfolio'
+        elif buy_signals / total_signals > 0.3:
+            return 'Average Portfolio'
+        else:
+            return 'Weak Portfolio'
+    
+    def _generate_rebalancing_suggestions(self, portfolio_stocks: List[Dict], ai_insights: List[Dict]) -> List[str]:
+        """Generate portfolio rebalancing suggestions"""
+        suggestions = []
+        
+        # Check for overconcentration
+        for stock in portfolio_stocks:
+            if stock.get('weight', 0) > 0.2:  # More than 20% in single stock
+                suggestions.append(f"Consider reducing exposure to {stock.get('stock_code', '')} (currently {stock.get('weight', 0)*100:.1f}%)")
+        
+        # Check AI recommendations
+        for insight in ai_insights:
+            if insight.get('ai_recommendation', '').lower() == 'sell' and insight.get('confidence', 0) > 70:
+                suggestions.append(f"Strong sell signal for {insight.get('symbol', '')} - consider booking profits/limiting losses")
+        
+        return suggestions
+    
+    def _convert_to_trading_format(self, recommendation: Dict, symbols: List[str]) -> Dict:
+        """Convert Smart Money AI recommendation to Breeze trading format"""
+        action = recommendation.get('enhanced_recommendations', {}).get('action', 'Hold').lower()
+        confidence = recommendation.get('enhanced_recommendations', {}).get('confidence', 50)
+        
+        # Create symbol allocation based on equal weight for simplicity
+        symbol_data = []
+        allocation_per_symbol = 100 / len(symbols) if symbols else 0
+        
+        for symbol in symbols:
+            symbol_data.append({
+                'symbol': symbol,
+                'allocation': allocation_per_symbol
+            })
+        
+        return {
+            'action': action,
+            'confidence': confidence,
+            'symbols': symbol_data
+        }
+    
+    def _assess_execution_risk(self, execution_result: Dict) -> Dict:
+        """Assess risk of trade execution"""
+        summary = execution_result.get('execution_summary', {})
+        successful_orders = summary.get('successful_orders', 0)
+        total_orders = summary.get('total_symbols', 1)
+        
+        success_rate = (successful_orders / total_orders) * 100 if total_orders > 0 else 0
+        
+        if success_rate > 80:
+            risk_level = 'Low'
+        elif success_rate > 60:
+            risk_level = 'Medium'
+        else:
+            risk_level = 'High'
+        
+        return {
+            'risk_level': risk_level,
+            'success_rate': success_rate,
+            'execution_quality': 'Good' if success_rate > 75 else 'Poor'
+        }
+    
+    def _determine_smart_action(self, alert: Dict, ai_analysis: Dict) -> str:
+        """Determine recommended action based on alert and AI analysis"""
+        alert_type = alert.get('type', '')
+        ai_recommendation = ai_analysis.get('investment_recommendation', {}).get('action', 'Hold')
+        
+        if alert_type == 'STOP_LOSS_TRIGGERED':
+            return 'SELL' if ai_recommendation.lower() in ['sell', 'hold'] else 'REVIEW'
+        elif alert_type == 'TAKE_PROFIT':
+            return 'BOOK_PROFITS' if ai_recommendation.lower() != 'buy' else 'HOLD_LONGER'
+        else:
+            return ai_recommendation.upper()
+    
+    def _rate_trading_performance(self, return_percentage: float, win_rate: float) -> str:
+        """Rate overall trading performance"""
+        if return_percentage > 15 and win_rate > 70:
+            return 'Excellent'
+        elif return_percentage > 8 and win_rate > 60:
+            return 'Good'
+        elif return_percentage > 0 and win_rate > 50:
+            return 'Average'
+        else:
+            return 'Poor'
+    
+    def _suggest_trading_improvements(self, positions: List[Dict]) -> List[str]:
+        """Suggest improvements for trading strategy"""
+        suggestions = []
+        
+        if not positions:
+            return ['Start building positions based on AI recommendations']
+        
+        # Analyze position sizes
+        large_losses = [pos for pos in positions if pos.get('pnl_percentage', 0) < -5]
+        if large_losses:
+            suggestions.append('Consider using tighter stop losses to limit large losses')
+        
+        # Check diversification
+        if len(positions) < 3:
+            suggestions.append('Consider diversifying across more stocks to reduce risk')
+        
+        return suggestions
+    
+    def _assess_portfolio_risk(self, portfolio_analysis: Dict) -> Dict:
+        """Assess portfolio risk levels"""
+        risk_metrics = portfolio_analysis.get('risk_metrics', {})
+        diversification_score = portfolio_analysis.get('diversification_score', 50)
+        
+        overall_risk = 'Medium'
+        if diversification_score > 70:
+            overall_risk = 'Low'
+        elif diversification_score < 30:
+            overall_risk = 'High'
+        
+        return {
+            'overall_risk': overall_risk,
+            'diversification_score': diversification_score,
+            'risk_factors': risk_metrics
+        }
+    
+    def _analyze_diversification(self, positions: List[Dict]) -> Dict:
+        """Analyze portfolio diversification"""
+        num_positions = len(positions)
+        
+        if num_positions >= 8:
+            diversification_level = 'Well Diversified'
+        elif num_positions >= 5:
+            diversification_level = 'Moderately Diversified'
+        elif num_positions >= 3:
+            diversification_level = 'Basic Diversification'
+        else:
+            diversification_level = 'Under-Diversified'
+        
+        return {
+            'level': diversification_level,
+            'position_count': num_positions,
+            'recommendation': 'Consider adding more positions' if num_positions < 5 else 'Good diversification'
+        }

@@ -1,0 +1,322 @@
+[
+  {
+    "text": "ELECTRICITY BILL PAYMENT BSES",
+    "category": "utilities"
+  },
+  {
+    "text": "Mobile recharge Airtel prepaid",
+    "category": "utilities"
+  },
+  {
+    "text": "Internet bill payment Jio Fiber",
+    "category": "utilities"
+  },
+  {
+    "text": "Water bill BMC payment",
+    "category": "utilities"
+  },
+  {
+    "text": "Gas cylinder booking HP Gas",
+    "category": "utilities"
+  },
+  {
+    "text": "DTH recharge Tata Sky",
+    "category": "utilities"
+  },
+  {
+    "text": "Landline bill BSNL",
+    "category": "utilities"
+  },
+  {
+    "text": "Broadband bill Airtel",
+    "category": "utilities"
+  },
+  {
+    "text": "Payment to SWIGGY for food delivery",
+    "category": "food"
+  },
+  {
+    "text": "ZOMATO online food order",
+    "category": "food"
+  },
+  {
+    "text": "MCDONALDS restaurant payment",
+    "category": "food"
+  },
+  {
+    "text": "DMart grocery shopping",
+    "category": "food"
+  },
+  {
+    "text": "Local restaurant dinner",
+    "category": "food"
+  },
+  {
+    "text": "Coffee shop payment Starbucks",
+    "category": "food"
+  },
+  {
+    "text": "Pizza Hut online order",
+    "category": "food"
+  },
+  {
+    "text": "Grocery store vegetables",
+    "category": "food"
+  },
+  {
+    "text": "Petrol pump fuel payment",
+    "category": "transportation"
+  },
+  {
+    "text": "UBER cab ride payment",
+    "category": "transportation"
+  },
+  {
+    "text": "OLA auto booking",
+    "category": "transportation"
+  },
+  {
+    "text": "Metro card recharge",
+    "category": "transportation"
+  },
+  {
+    "text": "Railway ticket booking",
+    "category": "transportation"
+  },
+  {
+    "text": "Parking fee payment",
+    "category": "transportation"
+  },
+  {
+    "text": "Toll plaza payment",
+    "category": "transportation"
+  },
+  {
+    "text": "Bus ticket MSRTC",
+    "category": "transportation"
+  },
+  {
+    "text": "NETFLIX subscription payment",
+    "category": "entertainment"
+  },
+  {
+    "text": "Movie ticket BookMyShow",
+    "category": "entertainment"
+  },
+  {
+    "text": "Amazon Prime subscription",
+    "category": "entertainment"
+  },
+  {
+    "text": "Spotify music subscription",
+    "category": "entertainment"
+  },
+  {
+    "text": "YouTube Premium payment",
+    "category": "entertainment"
+  },
+  {
+    "text": "Gaming subscription payment",
+    "category": "entertainment"
+  },
+  {
+    "text": "Book purchase Amazon",
+    "category": "entertainment"
+  },
+  {
+    "text": "Magazine subscription",
+    "category": "entertainment"
+  },
+  {
+    "text": "AMAZON online shopping",
+    "category": "shopping"
+  },
+  {
+    "text": "FLIPKART electronics purchase",
+    "category": "shopping"
+  },
+  {
+    "text": "MYNTRA clothing order",
+    "category": "shopping"
+  },
+  {
+    "text": "Mobile phone purchase",
+    "category": "shopping"
+  },
+  {
+    "text": "Laptop purchase online",
+    "category": "shopping"
+  },
+  {
+    "text": "Fashion shopping mall",
+    "category": "shopping"
+  },
+  {
+    "text": "Electronics store payment",
+    "category": "shopping"
+  },
+  {
+    "text": "Home appliances purchase",
+    "category": "shopping"
+  },
+  {
+    "text": "APOLLO hospital payment",
+    "category": "healthcare"
+  },
+  {
+    "text": "Pharmacy medicine purchase",
+    "category": "healthcare"
+  },
+  {
+    "text": "Doctor consultation fee",
+    "category": "healthcare"
+  },
+  {
+    "text": "Medical insurance premium",
+    "category": "healthcare"
+  },
+  {
+    "text": "Dental clinic payment",
+    "category": "healthcare"
+  },
+  {
+    "text": "Lab test pathology",
+    "category": "healthcare"
+  },
+  {
+    "text": "Prescription medicine",
+    "category": "healthcare"
+  },
+  {
+    "text": "Health checkup payment",
+    "category": "healthcare"
+  },
+  {
+    "text": "School fees payment",
+    "category": "education"
+  },
+  {
+    "text": "Online course Udemy",
+    "category": "education"
+  },
+  {
+    "text": "University tuition fees",
+    "category": "education"
+  },
+  {
+    "text": "Book purchase education",
+    "category": "education"
+  },
+  {
+    "text": "Training program fees",
+    "category": "education"
+  },
+  {
+    "text": "Coaching class payment",
+    "category": "education"
+  },
+  {
+    "text": "Library membership",
+    "category": "education"
+  },
+  {
+    "text": "Educational software",
+    "category": "education"
+  },
+  {
+    "text": "SIP mutual fund payment",
+    "category": "investment"
+  },
+  {
+    "text": "Stock purchase Zerodha",
+    "category": "investment"
+  },
+  {
+    "text": "Mutual fund investment",
+    "category": "investment"
+  },
+  {
+    "text": "ELSS tax saving fund",
+    "category": "investment"
+  },
+  {
+    "text": "Fixed deposit renewal",
+    "category": "investment"
+  },
+  {
+    "text": "Gold ETF purchase",
+    "category": "investment"
+  },
+  {
+    "text": "PPF contribution",
+    "category": "investment"
+  },
+  {
+    "text": "Trading account deposit",
+    "category": "investment"
+  },
+  {
+    "text": "Money transfer to friend",
+    "category": "transfer"
+  },
+  {
+    "text": "UPI payment sent",
+    "category": "transfer"
+  },
+  {
+    "text": "NEFT transfer to family",
+    "category": "transfer"
+  },
+  {
+    "text": "Amount credited salary",
+    "category": "transfer"
+  },
+  {
+    "text": "Cash deposit ATM",
+    "category": "transfer"
+  },
+  {
+    "text": "Bank transfer received",
+    "category": "transfer"
+  },
+  {
+    "text": "Online transfer sent",
+    "category": "transfer"
+  },
+  {
+    "text": "Money received UPI",
+    "category": "transfer"
+  },
+  {
+    "text": "ATM cash withdrawal",
+    "category": "others"
+  },
+  {
+    "text": "Bank charges applied",
+    "category": "others"
+  },
+  {
+    "text": "Interest credited",
+    "category": "others"
+  },
+  {
+    "text": "Cashback received",
+    "category": "others"
+  },
+  {
+    "text": "Reward points redeemed",
+    "category": "others"
+  },
+  {
+    "text": "Service charge deducted",
+    "category": "others"
+  },
+  {
+    "text": "Penalty payment",
+    "category": "others"
+  },
+  {
+    "text": "Miscellaneous payment",
+    "category": "others"
+  }
+]

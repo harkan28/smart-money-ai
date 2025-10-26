@@ -26,7 +26,7 @@ import pickle
 import numpy as np
 import pandas as pd
 from datetime import datetime
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Any
 import sqlite3
 import os
 from sklearn.feature_extraction.text import TfidfVectorizer
