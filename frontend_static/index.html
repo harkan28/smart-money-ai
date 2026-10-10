@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smart Money AI - Your Personal Intelligent Financial Assistant">
+    <title>Smart Money AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Ionicons for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <nav class="glass-nav">
+        <div class="logo">
+            <ion-icon name="wallet"></ion-icon>
+            <span>Smart Money <strong>AI</strong></span>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active">Dashboard</a>
+            <a href="#">Transactions</a>
+            <a href="#">Analytics</a>
+            <a href="#">Settings</a>
+        </div>
+        <div class="user-profile">
+            <img src="https://ui-avatars.com/api/?name=Demo+User&background=6366f1&color=fff" alt="User Profile" class="avatar">
+        </div>
+    </nav>
+
+    <main class="dashboard-container">
+        <header class="dashboard-header">
+            <div>
+                <h1 id="greeting">Good Evening, Demo</h1>
+                <p>Here's your financial overview powered by AI.</p>
+            </div>
+            <button class="primary-btn glass-btn" onclick="triggerSync()">
+                <ion-icon name="sync-outline"></ion-icon> Sync SMS
+            </button>
+        </header>
+
+        <section class="overview-cards">
+            <div class="glass-card balance-card">
+                <div class="card-header">
+                    <h3>Total Balance</h3>
+                    <ion-icon name="trending-up" class="icon-green"></ion-icon>
+                </div>
+                <h2 class="amount">₹1,24,500.00</h2>
+                <p class="subtitle">+2.5% from last month</p>
+            </div>
+
+            <div class="glass-card expense-card">
+                <div class="card-header">
+                    <h3>Monthly Spend</h3>
+                    <ion-icon name="trending-down" class="icon-red"></ion-icon>
+                </div>
+                <h2 class="amount">₹32,450.00</h2>
+                <p class="subtitle">54% of monthly budget</p>
+            </div>
+
+            <div class="glass-card prediction-card">
+                <div class="card-header">
+                    <h3>AI Forecast (Next 30 Days)</h3>
+                    <ion-icon name="sparkles" class="icon-purple"></ion-icon>
+                </div>
+                <h2 class="amount">₹28,000.00</h2>
+                <p class="subtitle">Predicted expenses</p>
+            </div>
+        </section>
+
+        <div class="dashboard-grid">
+            <section class="glass-card transactions-section">
+                <div class="section-header">
+                    <h2>Recent Transactions</h2>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <ul class="transaction-list" id="transaction-list">
+                    <!-- Injected via JS -->
+                </ul>
+            </section>
+
+            <section class="glass-card insights-section">
+                <div class="section-header">
+                    <h2>AI Insights</h2>
+                </div>
+                <div class="insight-list">
+                    <div class="insight-item warning">
+                        <div class="insight-icon">
+                            <ion-icon name="alert-circle"></ion-icon>
+                        </div>
+                        <div class="insight-text">
+                            <h4>High Discretionary Spending</h4>
+                            <p>You've spent ₹8,000 on entertainment this week. Consider reducing this to stay on budget.</p>
+                        </div>
+                    </div>
+                    <div class="insight-item success">
+                        <div class="insight-icon">
+                            <ion-icon name="checkmark-circle"></ion-icon>
+                        </div>
+                        <div class="insight-text">
+                            <h4>Investment Opportunity</h4>
+                            <p>Your surplus is high. Consider investing ₹15,000 in an Index Fund based on your risk profile.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
