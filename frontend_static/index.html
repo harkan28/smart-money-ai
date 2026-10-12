@@ -29,8 +29,15 @@
             <a href="#">Analytics</a>
             <a href="#">Settings</a>
         </div>
-        <div class="user-profile">
-            <img src="https://ui-avatars.com/api/?name=Demo+User&background=6366f1&color=fff" alt="User Profile" class="avatar">
+        <div class="nav-actions">
+            <button class="nav-privacy-btn" id="nav-privacy-btn" onclick="openDPDPSettings()" title="DPDP Privacy & Cookie Settings">
+                <ion-icon name="shield-checkmark"></ion-icon>
+                <span>Privacy & Cookies</span>
+                <span class="nav-badge" id="nav-consent-status">DPDP</span>
+            </button>
+            <div class="user-profile">
+                <img src="https://ui-avatars.com/api/?name=Demo+User&background=6366f1&color=fff" alt="User Profile" class="avatar">
+            </div>
         </div>
     </nav>
 
@@ -112,6 +119,484 @@
             </section>
         </div>
     </main>
+
+    <!-- DPDP Floating Privacy Shield Trigger -->
+    <button id="dpdp-floating-badge" class="dpdp-floating-badge" onclick="openDPDPSettings()" title="Manage DPDP Privacy & Cookie Preferences">
+        <div class="shield-pulse"></div>
+        <ion-icon name="shield-checkmark"></ion-icon>
+        <span class="floating-text">DPDP Privacy & Cookies</span>
+        <span class="dpdp-status-tag" id="floating-status-tag">Notice</span>
+    </button>
+
+    <!-- DPDP Consent & Age Verification Modal Overlay -->
+    <div id="dpdp-modal-overlay" class="dpdp-modal-overlay" style="display: none;">
+        <div class="dpdp-modal-container glass-card" role="dialog" aria-modal="true" aria-labelledby="dpdp-modal-title">
+            
+            <!-- Modal Header -->
+            <div class="dpdp-modal-top">
+                <div class="dpdp-compliance-pill">
+                    <ion-icon name="shield-checkmark"></ion-icon>
+                    <span>India DPDP Act 2023 Compliant</span>
+                    <span class="dpdp-statute-tag">Act No. 22 of 2023</span>
+                </div>
+                <button type="button" class="dpdp-close-icon" id="dpdp-modal-close-btn" onclick="closeDPDPModal()" aria-label="Close" style="display: none;">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+            </div>
+
+            <!-- Multi-step Indicator -->
+            <div class="dpdp-stepper">
+                <div class="step-indicator active" id="step-nav-1">
+                    <span class="step-circle">1</span>
+                    <span class="step-label">Age Verification</span>
+                </div>
+                <div class="step-divider"></div>
+                <div class="step-indicator" id="step-nav-2">
+                    <span class="step-circle">2</span>
+                    <span class="step-label">Cookie Purposes &amp; Consent</span>
+                </div>
+            </div>
+
+            <!-- STEP 1: Age Gate (DPDP Act Section 9) -->
+            <div id="dpdp-step-age" class="dpdp-step-panel active">
+                <div class="step-header">
+                    <div class="step-icon-badge age-icon">
+                        <ion-icon name="id-card-outline"></ion-icon>
+                    </div>
+                    <div>
+                        <h2 id="dpdp-modal-title">Age Verification &amp; Privacy Notice</h2>
+                        <p class="step-desc">Under the <strong>Digital Personal Data Protection Act, 2023 (DPDP Act)</strong>, your consent rights and cookie protections vary depending on whether you are an adult or a minor.</p>
+                    </div>
+                </div>
+
+                <div class="age-prompt-card">
+                    <h3>Please verify your age to continue:</h3>
+                    <p class="age-subtext">Are you 18 years of age or older?</p>
+
+                    <div class="age-selection-grid">
+                        <!-- Adult Option -->
+                        <div class="age-card" id="card-age-adult" onclick="selectAgeOption('adult')">
+                            <div class="age-card-radio">
+                                <span class="radio-indicator"></span>
+                            </div>
+                            <div class="age-card-content">
+                                <div class="age-card-title">
+                                    <ion-icon name="person-outline" class="icon-adult"></ion-icon>
+                                    <h4>I am 18 years or older</h4>
+                                </div>
+                                <span class="badge-role adult">Adult Data Principal</span>
+                                <p class="age-card-desc">Proceed to full cookie purpose disclosure and customize your consent preferences (AI forecasts, analytics, and personalization).</p>
+                            </div>
+                            <ion-icon name="arrow-forward-outline" class="card-action-icon"></ion-icon>
+                        </div>
+
+                        <!-- Minor Option -->
+                        <div class="age-card" id="card-age-minor" onclick="selectAgeOption('minor')">
+                            <div class="age-card-radio">
+                                <span class="radio-indicator"></span>
+                            </div>
+                            <div class="age-card-content">
+                                <div class="age-card-title">
+                                    <ion-icon name="school-outline" class="icon-minor"></ion-icon>
+                                    <h4>I am under 18 years old</h4>
+                                </div>
+                                <span class="badge-role minor">Minor Data Principal</span>
+                                <p class="age-card-desc">Enhanced child protections under DPDP Section 9. Behavioral tracking &amp; AI profiling cookies are strictly blocked; parental acknowledgement required.</p>
+                            </div>
+                            <ion-icon name="arrow-forward-outline" class="card-action-icon"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dpdp-legal-alert">
+                    <ion-icon name="information-circle"></ion-icon>
+                    <div>
+                        <strong>Section 9 DPDP Act Mandate:</strong> Data fiduciaries are prohibited from undertaking tracking, behavioral monitoring, or targeted advertising directed at children under 18 years of age.
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2-ADULT: Granular Cookie Consent & Explicit Purpose Breakdown -->
+            <div id="dpdp-step-adult" class="dpdp-step-panel">
+                <div class="step-header">
+                    <div class="step-icon-badge cookie-icon">
+                        <ion-icon name="finger-print-outline"></ion-icon>
+                    </div>
+                    <div>
+                        <h2>Cookie Purpose Specification &amp; Consent</h2>
+                        <p class="step-desc">Under DPDP Section 5, you have the statutory right to know the <strong>exact purpose (reason)</strong> why each cookie is fired before giving consent.</p>
+                    </div>
+                </div>
+
+                <div class="user-status-bar">
+                    <div class="status-left">
+                        <span class="user-pill adult-pill"><ion-icon name="checkmark-circle"></ion-icon> Verified Age: 18+ (Adult)</span>
+                    </div>
+                    <button type="button" class="text-btn" onclick="backToAgeStep()">
+                        <ion-icon name="create-outline"></ion-icon> Change Age
+                    </button>
+                </div>
+
+                <!-- Cookie Categories List -->
+                <div class="dpdp-cookie-list">
+                    
+                    <!-- 1. Strictly Necessary -->
+                    <div class="cookie-group-card necessary">
+                        <div class="cookie-group-main">
+                            <div class="cookie-group-info">
+                                <div class="cookie-group-header">
+                                    <div class="cookie-icon-tag"><ion-icon name="lock-closed-outline"></ion-icon></div>
+                                    <h4>Strictly Necessary &amp; Security Cookies</h4>
+                                    <span class="badge-tag mandatory">Always Active (Mandatory)</span>
+                                </div>
+                                <p class="cookie-group-summary">Essential for bank-grade session encryption, CSRF protection, and recording your DPDP consent choices.</p>
+                            </div>
+                            <div class="cookie-toggle-wrap">
+                                <label class="toggle-switch disabled">
+                                    <input type="checkbox" id="cookie-toggle-necessary" checked disabled>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Explicit Reason Disclosure -->
+                        <div class="cookie-reason-box">
+                            <div class="reason-title">
+                                <ion-icon name="help-circle-outline"></ion-icon>
+                                <strong>Why we fire this cookie (Purpose):</strong>
+                            </div>
+                            <p class="reason-text">Fired to authenticate your encrypted financial dashboard, prevent Cross-Site Request Forgery (CSRF) on transaction synchronization, and store your DPDP consent preferences so you are not asked repeatedly.</p>
+                            <div class="cookie-meta-grid">
+                                <div class="meta-item">
+                                    <span class="meta-label">Cookies Dropped:</span>
+                                    <span class="meta-value code-pill">_sm_session_id, _sm_csrf_token, _sm_dpdp_consent</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Data Collected:</span>
+                                    <span class="meta-value">Encrypted session nonce &amp; consent timestamp</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Retention:</span>
+                                    <span class="meta-value">Session / 180 Days</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Legal Basis:</span>
+                                    <span class="meta-value">DPDP Sec 4 &amp; 7 (Legitimate Uses)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. AI Personalization & Forecasting -->
+                    <div class="cookie-group-card optional">
+                        <div class="cookie-group-main">
+                            <div class="cookie-group-info">
+                                <div class="cookie-group-header">
+                                    <div class="cookie-icon-tag ai-tag"><ion-icon name="sparkles-outline"></ion-icon></div>
+                                    <h4>AI Financial Forecasting &amp; Personalization</h4>
+                                    <span class="badge-tag optional">Optional Consent</span>
+                                </div>
+                                <p class="cookie-group-summary">Locally caches your spending persona &amp; machine learning parameters for instantaneous 30-day expense forecasting.</p>
+                            </div>
+                            <div class="cookie-toggle-wrap">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="cookie-toggle-ai">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Explicit Reason Disclosure -->
+                        <div class="cookie-reason-box">
+                            <div class="reason-title">
+                                <ion-icon name="help-circle-outline"></ion-icon>
+                                <strong>Why we fire this cookie (Purpose):</strong>
+                            </div>
+                            <p class="reason-text">Fired to store your spending category distributions and budget sensitivity in your browser. This enables our client-side AI algorithms to generate instant 30-day forecast predictions without re-uploading raw SMS financial data on every page reload.</p>
+                            <div class="cookie-meta-grid">
+                                <div class="meta-item">
+                                    <span class="meta-label">Cookies Dropped:</span>
+                                    <span class="meta-value code-pill">_sm_ai_persona_cache, _sm_forecast_prefs</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Data Collected:</span>
+                                    <span class="meta-value">Budget ratios &amp; AI prediction weights</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Retention:</span>
+                                    <span class="meta-value">90 Days</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Legal Basis:</span>
+                                    <span class="meta-value">DPDP Sec 6 (Explicit Opt-In)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Performance & Error Telemetry -->
+                    <div class="cookie-group-card optional">
+                        <div class="cookie-group-main">
+                            <div class="cookie-group-info">
+                                <div class="cookie-group-header">
+                                    <div class="cookie-icon-tag perf-tag"><ion-icon name="speedometer-outline"></ion-icon></div>
+                                    <h4>Performance &amp; Diagnostic Telemetry</h4>
+                                    <span class="badge-tag optional">Optional Consent</span>
+                                </div>
+                                <p class="cookie-group-summary">Measures dashboard rendering speed, SMS parser latency, and crash diagnostics in aggregated form.</p>
+                            </div>
+                            <div class="cookie-toggle-wrap">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="cookie-toggle-perf">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Explicit Reason Disclosure -->
+                        <div class="cookie-reason-box">
+                            <div class="reason-title">
+                                <ion-icon name="help-circle-outline"></ion-icon>
+                                <strong>Why we fire this cookie (Purpose):</strong>
+                            </div>
+                            <p class="reason-text">Fired to log page load benchmarks, sync success rates, and API latency metrics. No financial or SMS content is recorded; metrics are de-identified to help developers diagnose bottlenecks and optimize system stability.</p>
+                            <div class="cookie-meta-grid">
+                                <div class="meta-item">
+                                    <span class="meta-label">Cookies Dropped:</span>
+                                    <span class="meta-value code-pill">_sm_perf_telemetry, _sm_sync_latency</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Data Collected:</span>
+                                    <span class="meta-value">Load times &amp; aggregated error telemetry</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Retention:</span>
+                                    <span class="meta-value">60 Days</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Legal Basis:</span>
+                                    <span class="meta-value">DPDP Sec 6 (Explicit Opt-In)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Smart Financial Alerts & Nudges -->
+                    <div class="cookie-group-card optional">
+                        <div class="cookie-group-main">
+                            <div class="cookie-group-info">
+                                <div class="cookie-group-header">
+                                    <div class="cookie-icon-tag alert-tag"><ion-icon name="notifications-outline"></ion-icon></div>
+                                    <h4>Smart Financial Alerts &amp; Spend Nudges</h4>
+                                    <span class="badge-tag optional">Optional Consent</span>
+                                </div>
+                                <p class="cookie-group-summary">Tracks dismissed warnings, monthly budget limit alerts, and personalized saving opportunity notifications.</p>
+                            </div>
+                            <div class="cookie-toggle-wrap">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="cookie-toggle-alerts">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Explicit Reason Disclosure -->
+                        <div class="cookie-reason-box">
+                            <div class="reason-title">
+                                <ion-icon name="help-circle-outline"></ion-icon>
+                                <strong>Why we fire this cookie (Purpose):</strong>
+                            </div>
+                            <p class="reason-text">Fired to record which advisory cards (such as "High Discretionary Spending" or "Index Fund Investment Opportunity") you have viewed or dismissed, preventing duplicate reminders from interrupting your workflow.</p>
+                            <div class="cookie-meta-grid">
+                                <div class="meta-item">
+                                    <span class="meta-label">Cookies Dropped:</span>
+                                    <span class="meta-value code-pill">_sm_alert_nudges, _sm_insights_viewed</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Data Collected:</span>
+                                    <span class="meta-value">Card view states &amp; reminder frequency timestamps</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Retention:</span>
+                                    <span class="meta-value">30 Days</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Legal Basis:</span>
+                                    <span class="meta-value">DPDP Sec 6 (Explicit Opt-In)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- DPDP Statutory Rights Notice -->
+                <div class="dpdp-rights-summary">
+                    <div class="rights-title">
+                        <ion-icon name="shield-outline"></ion-icon>
+                        <span>Your Statutory Rights under DPDP Act 2023:</span>
+                    </div>
+                    <div class="rights-pills">
+                        <span class="pill-right">&bull; Right to Withdraw Consent Anytime (Sec 6(4))</span>
+                        <span class="pill-right">&bull; Right to Data Summary &amp; Correction (Sec 11 &amp; 12)</span>
+                        <span class="pill-right">&bull; Right to Nominate (Sec 14)</span>
+                        <span class="pill-right">&bull; Grievance Redressal: <a href="mailto:grievance@smartmoney.ai" class="dpo-link">grievance@smartmoney.ai</a> (Sec 13)</span>
+                    </div>
+                </div>
+
+                <!-- Modal Actions for Adult -->
+                <div class="dpdp-actions-footer">
+                    <button type="button" class="btn-outline-danger" onclick="rejectNonEssentialCookies()">
+                        <ion-icon name="close-circle-outline"></ion-icon> Reject Non-Essential
+                    </button>
+                    <div class="action-btn-cluster">
+                        <button type="button" class="btn-outline-primary" onclick="saveCustomCookiePreferences()">
+                            <ion-icon name="checkmark-outline"></ion-icon> Save My Choices
+                        </button>
+                        <button type="button" class="btn-gradient-primary" onclick="acceptAllCookies()">
+                            <ion-icon name="shield-checkmark-outline"></ion-icon> Accept All (Recommended)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2-MINOR: Minor Protection Flow (DPDP Act Section 9) -->
+            <div id="dpdp-step-minor" class="dpdp-step-panel">
+                <div class="step-header">
+                    <div class="step-icon-badge minor-icon">
+                        <ion-icon name="shield-half-outline"></ion-icon>
+                    </div>
+                    <div>
+                        <h2>Minor Protection Safeguard</h2>
+                        <p class="step-desc">Section 9 of India's <strong>DPDP Act 2023</strong> imposes strict restrictions on the processing of personal data of children.</p>
+                    </div>
+                </div>
+
+                <div class="user-status-bar">
+                    <div class="status-left">
+                        <span class="user-pill minor-pill"><ion-icon name="school-outline"></ion-icon> Declared Age: Under 18 (Minor)</span>
+                    </div>
+                    <button type="button" class="text-btn" onclick="backToAgeStep()">
+                        <ion-icon name="create-outline"></ion-icon> Change Age
+                    </button>
+                </div>
+
+                <div class="minor-restriction-card">
+                    <div class="restriction-header">
+                        <ion-icon name="ban-outline"></ion-icon>
+                        <h4>Statutory Tracking &amp; Profiling Restrictions Active</h4>
+                    </div>
+                    <ul class="restriction-list">
+                        <li><strong>Section 9(3) Prohibition:</strong> Behavioral monitoring, predictive AI profiling, and targeted advertising directed at children are permanently <strong>blocked and disabled</strong>.</li>
+                        <li><strong>Strict Data Minimization:</strong> Only basic, strictly essential security cookies are permitted for educational budgeting tools.</li>
+                        <li><strong>No Third-Party Sharing:</strong> Minor personal data is never shared with third parties or advertising networks.</li>
+                    </ul>
+                </div>
+
+                <!-- Parental / Lawful Guardian Verification Form -->
+                <div class="guardian-consent-card">
+                    <h4><ion-icon name="people-outline"></ion-icon> Parental / Lawful Guardian Acknowledgment</h4>
+                    <p class="guardian-subtext">Under DPDP Section 9(1), processing personal data of a minor requires verifiable parental or lawful guardian consent for necessary service operation:</p>
+
+                    <div class="guardian-form-grid">
+                        <div class="input-field">
+                            <label for="guardian-name">Parent / Lawful Guardian Full Name <span class="required">*</span></label>
+                            <input type="text" id="guardian-name" class="glass-input" placeholder="e.g., Rajesh Sharma">
+                        </div>
+                        <div class="input-field">
+                            <label for="guardian-contact">Parent / Guardian Email or Mobile <span class="required">*</span></label>
+                            <input type="text" id="guardian-contact" class="glass-input" placeholder="e.g., parent@example.com / +91 9876543210">
+                        </div>
+                    </div>
+
+                    <label class="custom-checkbox-row">
+                        <input type="checkbox" id="guardian-affirmation" checked>
+                        <span class="checkbox-box"></span>
+                        <span class="checkbox-text">I confirm that I am the parent or lawful guardian of this user. I acknowledge that only strictly essential security cookies will be fired to facilitate educational financial analysis.</span>
+                    </label>
+                </div>
+
+                <!-- Minor Action Footer -->
+                <div class="dpdp-actions-footer">
+                    <button type="button" class="btn-outline-secondary" onclick="backToAgeStep()">
+                        <ion-icon name="arrow-back-outline"></ion-icon> Back
+                    </button>
+                    <button type="button" class="btn-gradient-minor" onclick="confirmMinorConsent()">
+                        <ion-icon name="shield-checkmark-outline"></ion-icon> Confirm Child-Safe Mode (Essential Only)
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Live Cookie Inspector & Consent Management Drawer -->
+    <div id="cookie-inspector-drawer" class="cookie-inspector-drawer">
+        <div class="drawer-header">
+            <div class="drawer-title">
+                <ion-icon name="terminal-outline"></ion-icon>
+                <h3>DPDP Cookie Audit &amp; Active Storage</h3>
+            </div>
+            <button type="button" class="drawer-close-btn" onclick="toggleCookieInspector()">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+        </div>
+        <div class="drawer-body">
+            <div class="audit-summary-card">
+                <div class="audit-row">
+                    <span>DPDP Status:</span>
+                    <strong class="text-success" id="audit-dpdp-status">Compliant</strong>
+                </div>
+                <div class="audit-row">
+                    <span>Data Principal Category:</span>
+                    <strong id="audit-age-category">Adult (18+)</strong>
+                </div>
+                <div class="audit-row">
+                    <span>Consent Recorded:</span>
+                    <span id="audit-consent-date">Just now</span>
+                </div>
+            </div>
+
+            <div class="active-cookies-section">
+                <h4>Currently Active Browser Cookies (<span id="active-cookie-count">0</span>)</h4>
+                <div class="cookie-table-container">
+                    <table class="cookie-table">
+                        <thead>
+                            <tr>
+                                <th>Cookie Name</th>
+                                <th>Category</th>
+                                <th>Reason / Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody id="active-cookies-tbody">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="drawer-actions">
+                <button type="button" class="btn-danger-outline" onclick="withdrawAllConsent()">
+                    <ion-icon name="trash-outline"></ion-icon> Withdraw Consent (DPDP Sec 6(4))
+                </button>
+                <button type="button" class="btn-outline-primary" onclick="openDPDPSettings()">
+                    <ion-icon name="settings-outline"></ion-icon> Edit Cookie Preferences
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="dpdp-toast" class="dpdp-toast" style="display: none;">
+        <div class="toast-icon">
+            <ion-icon name="shield-checkmark"></ion-icon>
+        </div>
+        <div class="toast-content">
+            <h5 id="toast-title">Cookie Preferences Saved</h5>
+            <p id="toast-msg">Preferences updated in compliance with India's DPDP Act 2023.</p>
+        </div>
+        <button type="button" class="toast-inspect-btn" onclick="toggleCookieInspector()">Inspect</button>
+    </div>
 
     <script src="app.js"></script>
 </body>
